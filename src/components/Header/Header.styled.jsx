@@ -1,18 +1,19 @@
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 // import { Link } from "react-router-dom";
 import {HashLink} from 'react-router-hash-link'
-import { HEADER_BG_COLOR, HOVER_ITEM_COLOR, LIGHT_BROWN } from '../../utils/colors';
+import { BLACK, HEADER_BG_COLOR, HOVER_ITEM_COLOR, LIGHT_BROWN } from '../../utils/colors';
+import { Col, Container, Row } from 'react-bootstrap';
 
-export const HeaderNavArea = styled.div`
+export const HeaderNavArea = styled(Container)`
   align-items: center;
   display: flex;
   margin: 0 auto;
-  padding: 10px 20px;
-  background-color: ${HEADER_BG_COLOR};
-  position: absolute;
+  padding: 10px 50px;
+  background-color: ${({fixed}) => fixed ? BLACK : HEADER_BG_COLOR};
+  position: ${({fixed}) => fixed ? 'fixed' : 'absolute'};
   left: 0;
-  z-index: 3;
-  top: 10px;
+  z-index: ${({fixed}) => fixed ? 9999 : 3};
+  top: ${({fixed}) => fixed ? 0 : '10px'};
   color: #fff;
 `
 

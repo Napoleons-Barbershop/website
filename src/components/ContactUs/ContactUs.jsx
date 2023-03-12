@@ -9,7 +9,7 @@ import { BARBERSHOP_EMAIL, BARBERSHOP_MOBILE_NO } from '../../utils/constants';
 
 const ContactUs = () => {
   return (
-    <Container fluid style={{backgroundColor: WHITE, color: BLACK, padding: '75px 50px'}}>
+    <Container id="Contact Us" fluid style={{backgroundColor: WHITE, color: BLACK, padding: '165px 50px'}}>
       <Row>
         <Col>
           <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>

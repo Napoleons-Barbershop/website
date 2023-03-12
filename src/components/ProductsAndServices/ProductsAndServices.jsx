@@ -6,7 +6,7 @@ import Col from 'react-bootstrap/Col';
 
 const ProductsAndServices = () => {
   return (
-    <Container fluid style={{backgroundColor: BLACK, color: WHITE, padding: '75px 50px'}}>
+    <Container id='Products & Services' fluid style={{backgroundColor: BLACK, color: WHITE, padding: '165px 50px 75px 50px'}}>
       <h3 style={{textAlign: 'center', paddingBottom: 50}}>Produk Kami</h3>
       <div>
         <Row>

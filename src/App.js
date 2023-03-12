@@ -7,20 +7,34 @@ import ProductsAndServices from './components/ProductsAndServices/ProductsAndSer
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ContactUs from './components/ContactUs/ContactUs';
 import WhatsappFloatingButton from './components/WhatsappFloatingButton/WhatsappFloatingButton';
+import { useEffect, useState } from 'react';
 
-function App() {
+
+
+const App = () => {
+  // const {scrollDirection, currentY} = useScrollDirection();
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  const handleScroll = () => {
+    setScrollPosition(window.scrollY);
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
   return (
     <BrowserRouter>
-      <Header />
+      <Header fixed={scrollPosition > 200} />
       <AboutUs />
       <Location />
       <ProductsAndServices />
       <ContactUs />
       <WhatsappFloatingButton />
-      {/* <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/login' element={<Login />} />
-      </Routes> */}
   </BrowserRouter>
   );
 }
