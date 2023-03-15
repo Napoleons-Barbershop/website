@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ContactUs from './components/ContactUs/ContactUs';
 import WhatsappFloatingButton from './components/WhatsappFloatingButton/WhatsappFloatingButton';
 import AboutUs from './components/AboutUs/AboutUs';
+import Charity from './components/Charity/Charity';
 
 
 
@@ -19,6 +20,7 @@ const App = () => {
       <AboutUs />
       {/* <Location /> */}
       <ProductsAndServices />
+      <Charity />
       <ContactUs />
       <WhatsappFloatingButton />
   </BrowserRouter>
