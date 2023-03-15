@@ -2,8 +2,9 @@ import React from 'react';
 import Row from 'react-bootstrap/Row';
 import { BLACK, MAIN_COLOR, NAPOLEON_BROWN_COLOR, NAPOLEON_BG, NAPOLEON_TEXT_COLOR, WHITE, MAROON } from '../../utils/colors';
 import {MdLocationOn} from 'react-icons/md';
-import {AiFillPhone, AiTwotoneMail} from 'react-icons/ai';
-import { BARBERSHOP_EMAIL, BARBERSHOP_MOBILE_NO, MAPS_LINK } from '../../utils/constants';
+import {AiFillPhone, AiTwotoneMail, AiFillInstagram, AiFillTwitterCircle} from 'react-icons/ai';
+import {FaTiktok} from 'react-icons/fa';
+import { BARBERSHOP_EMAIL, BARBERSHOP_MOBILE_NO, MAPS_LINK, BARBERSHOP_INSTAGRAM, BARBERSHOP_TIKTOK, BARBERSHOP_TWITTER } from '../../utils/constants';
 import LocationMapImage from '../../assets/location-map.png';
 import { 
   ContactUsContainer,
@@ -20,7 +21,7 @@ const ContactUs = () => {
   }
 
   return (
-    <ContactUsContainer>
+    <ContactUsContainer id="Contact Us">
       <Row>
         <ContactUsCol md={6}>
           <ContactUsSectionWrapper>
@@ -29,14 +30,27 @@ const ContactUs = () => {
             </ContactUsSectionTitle>
             <div style={{display: 'flex', alignItems: 'center'}}>
               <div style={{width: 30, height: 30, alignSelf: 'start'}}>
-                <MdLocationOn size={20} />
+                <AiFillInstagram size={20} />
               </div>
-              <address style={{fontSize: '1rem', fontStyle: 'normal', width: 285, color: NAPOLEON_BROWN_COLOR}}>
-                Sentra Niaga Puri Indah Blok T6 no 31, <br /> 
-                Jl. Puri Indah Raya No.32, RT.1/RW.2, <br /> 
-                South Kembangan, Kembangan, West Jakarta City, <br />
-                Jakarta 11610
-              </address>
+              <a href={`https://www.instagram.com/${BARBERSHOP_INSTAGRAM}`} style={{fontSize: '1rem', fontStyle: 'normal', textDecoration: 'none', width: 285, color: NAPOLEON_BROWN_COLOR}}>
+                {`@${BARBERSHOP_INSTAGRAM}`}
+              </a>
+            </div>
+            <div style={{display: 'flex', alignItems: 'center'}}>
+              <div style={{width: 30, height: 30, alignSelf: 'start'}}>
+                <FaTiktok size={20} />
+              </div>
+              <a href={`https://www.tiktok.com/${BARBERSHOP_TIKTOK}`} style={{fontSize: '1rem', fontStyle: 'normal', textDecoration: 'none', width: 285, color: NAPOLEON_BROWN_COLOR}}>
+                {BARBERSHOP_TIKTOK}
+              </a>
+            </div>
+            <div style={{display: 'flex', alignItems: 'center'}}>
+              <div style={{width: 30, height: 30, alignSelf: 'start'}}>
+                <AiFillTwitterCircle size={20} />
+              </div>
+              <a href={`https://www.twitter.com/${BARBERSHOP_TWITTER}`} style={{fontSize: '1rem', fontStyle: 'normal', textDecoration: 'none', width: 285, color: NAPOLEON_BROWN_COLOR}}>
+                {`@${BARBERSHOP_TWITTER}`}
+              </a>
             </div>
             <div style={{display: 'flex', alignItems: 'center'}}>
               <div style={{width: 30, height: 30, alignSelf: 'start'}}>

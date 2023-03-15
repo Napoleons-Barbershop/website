@@ -52,15 +52,15 @@ const Header = () => {
               </HeaderMenuList>
             </DesktopMenuWrapper>
             <MobileMenuWrapper role="navigation">
-              <Menu width="15rem" menuClassName="burger--menu" right onOpen={handleOpen} onClose={handleClose} isOpen={openMobileMenu} customBurgerIcon={<GiHamburgerMenu size={25} />} customCrossIcon={<RiCloseFill size={33} color='#fff' />}>
+              <Menu width="60%" menuClassName="burger--menu" right onOpen={handleOpen} onClose={handleClose} isOpen={openMobileMenu} customBurgerIcon={<GiHamburgerMenu size={25} />} customCrossIcon={<RiCloseFill size={33} color='#fff' />}>
                 {menuItems.map((menu) => {
                   if(menu === "Booking") {
                     return (
                       <BookingLinkMobile onClick={onWhatsappClick} key={menu} to={`#${menu}`}>{menu}</BookingLinkMobile>
                     )
-                  } else if(menu === "Booking") {
+                  } else if(menu === "Recruitment") {
                     return (
-                      <RecruitmentLink key={menu} to={`#${menu}`}>{menu}</RecruitmentLink>
+                      <RecruitmentLinkMobile key={menu} to={`#${menu}`}>{menu}</RecruitmentLinkMobile>
                     )
                   }
                   return (

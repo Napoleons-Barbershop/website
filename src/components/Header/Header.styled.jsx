@@ -66,7 +66,8 @@ export const MenuItemLinkMobile = styled(HashLink)`
   color: inherit;
   text-decoration: none;
   text-align: left;
-  padding: 0.3rem;
+  padding: 1rem;
+  font-size: 1.5rem;
 
   &:hover {
     color: ${WHITE};
@@ -96,7 +97,9 @@ export const RecruitmentLinkMobile = styled(HashLink)`
   color: ${BLACK};
   text-decoration: none;
   text-align: left;
-  padding: 0.3rem;
+  padding: 1rem;
+  font-size: 1.5rem;
+  margin: 1rem 0;
   background-color: ${NAPOLEON_BROWN_COLOR};
 
   &:hover {
@@ -126,7 +129,9 @@ export const BookingLinkMobile = styled(HashLink)`
   color: ${BLACK};
   text-decoration: none;
   text-align: left;
-  padding: 0.3rem;
+  padding: 1rem;
+  font-size: 1.5rem;
+  margin: 1rem 0;
   background-color: ${NAPOLEON_COMPLEMENT_COLOR};
 
   &:hover {

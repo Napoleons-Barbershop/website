@@ -5,7 +5,7 @@ import { NAPOLEON_BG, NAPOLEON_TEXT_COLOR, WHITE } from '../../utils/colors';
 export const ProductsAndServicesContainer = styled(Container)`
   background-color: ${NAPOLEON_BG};
   color: ${WHITE};
-  padding: 165px 50px 75px 50px;
+  padding: 100px 50px 75px 50px;
 `
 
 export const ProductsAndServicesContainerTitle = styled(Container)`

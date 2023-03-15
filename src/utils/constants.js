@@ -3,6 +3,9 @@ export const MAPS_LINK = 'https://maps.app.goo.gl/Z5fFNVq9iFpBcWiN8?g_st=ic';
 export const WHATSAPP_LINK = 'https://wa.me/62123456789';
 export const BARBERSHOP_MOBILE_NO = '+6288223791220';
 export const BARBERSHOP_EMAIL = 'support@barberstore.com';
+export const BARBERSHOP_INSTAGRAM = 'napoleonsbarbershopid';
+export const BARBERSHOP_TIKTOK = '@napoleonsbarbershopid';
+export const BARBERSHOP_TWITTER = 'napoleonsbarber';
 export const CAROUSEL_RESPONSIVE_SIZES_LOGO = {
   desktop: {
     breakpoint: { max: 3000, min: 1000 },
