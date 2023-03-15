@@ -1,41 +1,55 @@
 import React from 'react';
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
-import FirstImage from '../../assets/about-us-image-1.jpg';
-import SecondImage from '../../assets/about-us-image-2.jpg';
-import ThirdImage from '../../assets/about-us-image-3.jpg';
+import { Col, Container, Row } from 'react-bootstrap';
+import { AiTwotoneCrown } from 'react-icons/ai'
+import { FaUserTie } from 'react-icons/fa'
+import { TbHeartHandshake } from 'react-icons/tb'
+import { GrPlan } from 'react-icons/gr'
+import { AboutUsCardWrapper, AboutUsTitle } from './AboutUs.styled';
 
-const responsive = {
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 1,
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 1,
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 1,
-  }
-};
 
 const AboutUs = () => {
   return (
-    <div id="Home">
-      <Carousel responsive={responsive} swipeable infinite /*autoPlay*/ customTransition="all .5" transitionDuration={500}>
-        <div style={{height: 'inherit'}}>
-          <img src={FirstImage} alt="Carousel Image" style={{height: 700, width: '100%', objectFit: 'cover'}} />
-        </div>
-        <div style={{height: 'inherit'}}>
-          <img src={SecondImage} alt="Carousel Image" style={{height: 700, width: '100%', objectFit: 'cover'}} />
-        </div>
-        <div style={{height: 'inherit'}}>
-          <img src={ThirdImage} alt="Carousel Image" style={{height: 700, width: '100%', objectFit: 'cover'}} />
-        </div>
-      </Carousel>
-    </div>
+    <Container fluid style={{padding: '165px 50px'}} id="About Us">
+      <Row>
+        <Col md={3}>
+          <AboutUsCardWrapper>
+            <div style={{paddingBottom: 20}}>
+              <AiTwotoneCrown size={25} />
+            </div>
+            <AboutUsTitle><b>1. Premium Barbershop</b></AboutUsTitle>
+            <span style={{textAlign: 'justify'}}>We are comitted to ensure that our barber services are up to the premium standard. If you are unsatisfied with your haircut, talk to us for a full refund!</span>
+          </AboutUsCardWrapper>
+        </Col>
+        <Col md={3}>
+          <AboutUsCardWrapper>
+            <div style={{paddingBottom: 20}}>
+              <FaUserTie size={25} />
+            </div>
+            <AboutUsTitle><b>2. Flexible membership plans</b></AboutUsTitle>
+            <span style={{textAlign: 'justify'}}>We provide a 3-month and 6-month membership to ease you! Get our membership, earn our access for our all-you-can-cut membership, and just cut-and-go with no hassle.</span>
+          </AboutUsCardWrapper>
+        </Col>
+        <Col md={3}>
+          <AboutUsCardWrapper>
+            <div style={{paddingBottom: 20}}>
+              <TbHeartHandshake size={25} />
+            </div>
+            <AboutUsTitle><b>3. Personalisation</b></AboutUsTitle>
+            <span style={{textAlign: 'justify'}}>Ever find it hard to recall what your last cut looked like? Just log in to our website and see your history with us!</span>
+          </AboutUsCardWrapper>
+        </Col>
+        <Col md={3}>
+          <AboutUsCardWrapper>
+            <div style={{paddingBottom: 20}}>
+              <GrPlan size={25} />
+            </div>
+            <AboutUsTitle><b>4. A barbershop with social awareness</b></AboutUsTitle>
+            <span style={{textAlign: 'justify'}}>We have decided to also be accountable for the society in need. Hence, part of our earnings will be donated to respective parties. See our social journey on our website!</span>
+          </AboutUsCardWrapper>
+        </Col>
+      </Row>
+    </Container>
   )
 }
 
-export default AboutUs
+export default AboutUs;
