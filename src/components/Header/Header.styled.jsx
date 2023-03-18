@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {HashLink} from 'react-router-hash-link'
-import { BLACK, DARK_GREEN, HEADER_BG_COLOR, HOVER_ITEM_COLOR, MAIN_COLOR, MAROON, NAPOLEON_BG, NAPOLEON_BROWN_COLOR, NAPOLEON_COMPLEMENT_COLOR, WHITE } from '../../utils/colors';
+import { BLACK, DARK_GREEN, HEADER_BG_COLOR, HOVER_ITEM_COLOR, MAIN_COLOR, MAROON, NAPOLEON_BG, NAPOLEON_BROWN_COLOR, NAPOLEON_COMPLEMENT_COLOR, NAPOLEON_COMPLEMENT_HOVER_COLOR, WHITE } from '../../utils/colors';
 import { Col, Container } from 'react-bootstrap';
 
 export const HeaderNavArea = styled(Container)`
@@ -119,7 +119,7 @@ export const BookingLink = styled(HashLink)`
 
   &:hover {
     color: ${WHITE};
-    background-color: ${HOVER_ITEM_COLOR};
+    background-color: ${NAPOLEON_COMPLEMENT_HOVER_COLOR};
   }
 `
 
@@ -136,7 +136,7 @@ export const BookingLinkMobile = styled(HashLink)`
 
   &:hover {
     color: ${WHITE};
-    background-color: ${HOVER_ITEM_COLOR};
+    background-color: ${NAPOLEON_COMPLEMENT_HOVER_COLOR};
   }
 `
 
