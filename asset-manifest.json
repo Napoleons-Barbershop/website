@@ -1,28 +1,28 @@
 {
   "files": {
-    "main.css": "/static/css/main.56ef3a6d.css",
-    "main.js": "/static/js/main.8d052c87.js",
-    "static/js/787.6f88f2a7.chunk.js": "/static/js/787.6f88f2a7.chunk.js",
-    "static/media/about-us-image-3.jpg": "/static/media/about-us-image-3.2b76f1e4659c196aa949.jpg",
-    "static/media/charity-image-1.jpg": "/static/media/charity-image-1.35ec8c522afbdc9cfad8.jpg",
-    "static/media/charity-image-2.jpg": "/static/media/charity-image-2.3b76a57215349b0179e1.jpg",
-    "static/media/charity-image-4.jpg": "/static/media/charity-image-4.59771e0a8beb259cb7a3.jpg",
-    "static/media/about-us-image-1.jpg": "/static/media/about-us-image-1.cafb0f737f57f4e4d792.jpg",
-    "static/media/charity-image-3.jpg": "/static/media/charity-image-3.80c26a4741882c61dd16.jpg",
-    "static/media/about-us-image-2.jpg": "/static/media/about-us-image-2.8de76d4b7579feca67c6.jpg",
-    "static/media/location-map.png": "/static/media/location-map.f8f65cb99c3dfea7f5f3.png",
-    "static/media/logo.jpg": "/static/media/logo.954da1b4536f87c020c3.jpg",
-    "static/media/whatsapp-icon.png": "/static/media/whatsapp-icon.1dd8ca2765f1f177ab22.png",
-    "static/media/revicons.eot": "/static/media/revicons.a77de540a38981833f9e.eot",
-    "static/media/revicons.ttf": "/static/media/revicons.57fd05d4ae650374c8de.ttf",
-    "static/media/revicons.woff": "/static/media/revicons.e8746a624ed098489406.woff",
-    "index.html": "/index.html",
-    "main.56ef3a6d.css.map": "/static/css/main.56ef3a6d.css.map",
-    "main.8d052c87.js.map": "/static/js/main.8d052c87.js.map",
-    "787.6f88f2a7.chunk.js.map": "/static/js/787.6f88f2a7.chunk.js.map"
+    "main.css": "/1301-barberstore/static/css/main.fb66426e.css",
+    "main.js": "/1301-barberstore/static/js/main.93060c4f.js",
+    "static/js/787.6f88f2a7.chunk.js": "/1301-barberstore/static/js/787.6f88f2a7.chunk.js",
+    "static/media/about-us-image-3.jpg": "/1301-barberstore/static/media/about-us-image-3.2b76f1e4659c196aa949.jpg",
+    "static/media/charity-image-1.jpg": "/1301-barberstore/static/media/charity-image-1.35ec8c522afbdc9cfad8.jpg",
+    "static/media/charity-image-2.jpg": "/1301-barberstore/static/media/charity-image-2.3b76a57215349b0179e1.jpg",
+    "static/media/charity-image-4.jpg": "/1301-barberstore/static/media/charity-image-4.59771e0a8beb259cb7a3.jpg",
+    "static/media/about-us-image-1.jpg": "/1301-barberstore/static/media/about-us-image-1.cafb0f737f57f4e4d792.jpg",
+    "static/media/charity-image-3.jpg": "/1301-barberstore/static/media/charity-image-3.80c26a4741882c61dd16.jpg",
+    "static/media/about-us-image-2.jpg": "/1301-barberstore/static/media/about-us-image-2.8de76d4b7579feca67c6.jpg",
+    "static/media/location-map.png": "/1301-barberstore/static/media/location-map.f8f65cb99c3dfea7f5f3.png",
+    "static/media/logo.jpg": "/1301-barberstore/static/media/logo.954da1b4536f87c020c3.jpg",
+    "static/media/whatsapp-icon.png": "/1301-barberstore/static/media/whatsapp-icon.1dd8ca2765f1f177ab22.png",
+    "static/media/revicons.eot": "/1301-barberstore/static/media/revicons.a77de540a38981833f9e.eot",
+    "static/media/revicons.ttf": "/1301-barberstore/static/media/revicons.57fd05d4ae650374c8de.ttf",
+    "static/media/revicons.woff": "/1301-barberstore/static/media/revicons.e8746a624ed098489406.woff",
+    "index.html": "/1301-barberstore/index.html",
+    "main.fb66426e.css.map": "/1301-barberstore/static/css/main.fb66426e.css.map",
+    "main.93060c4f.js.map": "/1301-barberstore/static/js/main.93060c4f.js.map",
+    "787.6f88f2a7.chunk.js.map": "/1301-barberstore/static/js/787.6f88f2a7.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.56ef3a6d.css",
-    "static/js/main.8d052c87.js"
+    "static/css/main.fb66426e.css",
+    "static/js/main.93060c4f.js"
   ]
 }
