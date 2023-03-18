@@ -6,8 +6,14 @@
 }
 
 .bm-cross-button {
-  width: inherit !important;
-  height: inherit !important;
+  width: 40px !important;
+  height: 40px !important;
+  right: 20px !important;
+  top: 20px !important;
+}
+
+.bm-burger-button {
+  width: 33px !important;
 }
 
 /* @media (max-width: 768px) {
