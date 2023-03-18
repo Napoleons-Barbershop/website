@@ -1,29 +1,17 @@
-import Header from './components/Header/Header';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
-import LogoSection from './components/LogoSection/LogoSection';
-import Location from './components/Location/Location';
-import ProductsAndServices from './components/ProductsAndServices/ProductsAndServices';
+import Home from './screens/Home/Home';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ContactUs from './components/ContactUs/ContactUs';
-import WhatsappFloatingButton from './components/WhatsappFloatingButton/WhatsappFloatingButton';
-import AboutUs from './components/AboutUs/AboutUs';
-import Charity from './components/Charity/Charity';
 
 
 
 const App = () => {
   return (
     <BrowserRouter>
-      <Header />
-      <LogoSection />
-      <AboutUs />
-      {/* <Location /> */}
-      <ProductsAndServices />
-      <Charity />
-      <ContactUs />
-      <WhatsappFloatingButton />
-  </BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Home />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
