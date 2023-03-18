@@ -8,7 +8,7 @@ const WhatsappFloatingButton = () => {
     window.open(WHATSAPP_LINK, '_self')
   }
   return (
-    <img onClick={onWhatsappClick} src={WhatsappIcon} alt="Whatsapp" style={{width: 50, position: 'fixed', right: 20, bottom: 20, cursor: 'pointer'}} />
+    <img loading='lazy' onClick={onWhatsappClick} src={WhatsappIcon} alt="Whatsapp" style={{width: 50, position: 'fixed', right: 20, bottom: 20, cursor: 'pointer'}} />
   )
 }
 

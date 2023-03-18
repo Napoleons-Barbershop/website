@@ -13,16 +13,16 @@ const LogoSection = () => {
     <div id="Home" style={{marginTop: 90}}>
       <Carousel responsive={CAROUSEL_RESPONSIVE_SIZES_LOGO} draggable swipeable infinite autoPlay autoPlaySpeed={4000} transitionDuration={500} removeArrowOnDeviceType={["tablet", "mobile"]}>
         <div style={{height: 'inherit'}}>
-          <img src={FirstImage} alt="Carousel Image" style={{height: 700, width: '100%', objectFit: 'cover'}} />
+          <img loading='lazy' src={FirstImage} alt="Carousel Image" style={{height: 700, width: '100%', objectFit: 'cover'}} />
         </div>
         <div style={{height: 'inherit'}}>
-          <img src={SecondImage} alt="Carousel Image" style={{height: 700, width: '100%', objectFit: 'cover'}} />
+          <img loading='lazy' src={SecondImage} alt="Carousel Image" style={{height: 700, width: '100%', objectFit: 'cover'}} />
         </div>
         <div style={{height: 'inherit'}}>
-          <img src={ThirdImage} alt="Carousel Image" style={{height: 700, width: '100%', objectFit: 'cover'}} />
+          <img loading='lazy' src={ThirdImage} alt="Carousel Image" style={{height: 700, width: '100%', objectFit: 'cover'}} />
         </div>
         <div style={{height: 'inherit'}}>
-          <img src={FourthImage} alt="Carousel Image" style={{height: 700, width: '100%', objectFit: 'cover'}} />
+          <img loading='lazy' src={FourthImage} alt="Carousel Image" style={{height: 700, width: '100%', objectFit: 'cover'}} />
         </div>
       </Carousel>
     </div>
