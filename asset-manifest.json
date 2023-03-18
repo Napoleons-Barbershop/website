@@ -1,28 +1,28 @@
 {
   "files": {
     "main.css": "/1301-barbershop/static/css/main.3bf26cff.css",
-    "main.js": "/1301-barbershop/static/js/main.0a1bdc91.js",
+    "main.js": "/1301-barbershop/static/js/main.17249a0f.js",
     "static/js/787.2bab808a.chunk.js": "/1301-barbershop/static/js/787.2bab808a.chunk.js",
-    "static/media/about-us-image-3.jpg": "/1301-barbershop/static/media/about-us-image-3.2b76f1e4659c196aa949.jpg",
-    "static/media/charity-image-1.jpg": "/1301-barbershop/static/media/charity-image-1.35ec8c522afbdc9cfad8.jpg",
-    "static/media/charity-image-2.jpg": "/1301-barbershop/static/media/charity-image-2.3b76a57215349b0179e1.jpg",
-    "static/media/charity-image-4.jpg": "/1301-barbershop/static/media/charity-image-4.59771e0a8beb259cb7a3.jpg",
-    "static/media/about-us-image-1.jpg": "/1301-barbershop/static/media/about-us-image-1.cafb0f737f57f4e4d792.jpg",
-    "static/media/charity-image-3.jpg": "/1301-barbershop/static/media/charity-image-3.80c26a4741882c61dd16.jpg",
-    "static/media/about-us-image-2.jpg": "/1301-barbershop/static/media/about-us-image-2.8de76d4b7579feca67c6.jpg",
-    "static/media/location-map.png": "/1301-barbershop/static/media/location-map.f8f65cb99c3dfea7f5f3.png",
-    "static/media/logo.jpg": "/1301-barbershop/static/media/logo.954da1b4536f87c020c3.jpg",
+    "static/media/charity-image-2.jpg": "/1301-barbershop/static/media/charity-image-2.ff4400380046314239d8.jpg",
+    "static/media/about-us-image-3.jpg": "/1301-barbershop/static/media/about-us-image-3.5cdb1dbcea1aab4c8ba4.jpg",
+    "static/media/charity-image-4.jpg": "/1301-barbershop/static/media/charity-image-4.0397849e6cd5ad90c1bd.jpg",
+    "static/media/charity-image-1.jpg": "/1301-barbershop/static/media/charity-image-1.4d318f64001b8994efb8.jpg",
+    "static/media/about-us-image-1.jpg": "/1301-barbershop/static/media/about-us-image-1.ac24fe0d0585f6b6b5a2.jpg",
+    "static/media/charity-image-3.jpg": "/1301-barbershop/static/media/charity-image-3.59079a4f6398dc1beeba.jpg",
+    "static/media/about-us-image-2.jpg": "/1301-barbershop/static/media/about-us-image-2.02341c6c43d1a654a163.jpg",
+    "static/media/location-map.png": "/1301-barbershop/static/media/location-map.554ef0f46caf2e0fed4d.png",
+    "static/media/logo.jpg": "/1301-barbershop/static/media/logo.f6c88470c172ef1a9ecd.jpg",
     "static/media/whatsapp-icon.png": "/1301-barbershop/static/media/whatsapp-icon.1dd8ca2765f1f177ab22.png",
     "static/media/revicons.eot": "/1301-barbershop/static/media/revicons.a77de540a38981833f9e.eot",
     "static/media/revicons.ttf": "/1301-barbershop/static/media/revicons.57fd05d4ae650374c8de.ttf",
     "static/media/revicons.woff": "/1301-barbershop/static/media/revicons.e8746a624ed098489406.woff",
     "index.html": "/1301-barbershop/index.html",
     "main.3bf26cff.css.map": "/1301-barbershop/static/css/main.3bf26cff.css.map",
-    "main.0a1bdc91.js.map": "/1301-barbershop/static/js/main.0a1bdc91.js.map",
+    "main.17249a0f.js.map": "/1301-barbershop/static/js/main.17249a0f.js.map",
     "787.2bab808a.chunk.js.map": "/1301-barbershop/static/js/787.2bab808a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3bf26cff.css",
-    "static/js/main.0a1bdc91.js"
+    "static/js/main.17249a0f.js"
   ]
 }
