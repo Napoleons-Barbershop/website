@@ -73,7 +73,7 @@ const ContactUs = () => {
         <ContactUsCol style={{textAlign: 'center'}}>
           <ContactUsSectionTitle>Address</ContactUsSectionTitle>
           <div>
-            <ContactUsLocationImage style={{paddingBottom: 20}} src={LocationMapImage} alt="1301 Barberstore Location" onClick={onImageClick} />
+            <ContactUsLocationImage style={{paddingBottom: 20}} src={LocationMapImage} alt="Napoleon Barbershop Location" onClick={onImageClick} />
           </div>
           <ContactUsAddress>
             <address style={{fontSize: 18, fontStyle: 'normal', textAlign: 'center', color: NAPOLEON_BROWN_COLOR}}>

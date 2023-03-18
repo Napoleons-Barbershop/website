@@ -2,7 +2,7 @@ export const menuItems = ['Home', 'About Us', 'Products & Services', 'Contact Us
 export const MAPS_LINK = 'https://maps.app.goo.gl/Z5fFNVq9iFpBcWiN8?g_st=ic';
 export const WHATSAPP_LINK = 'https://wa.me/62123456789';
 export const BARBERSHOP_MOBILE_NO = '+6288223791220';
-export const BARBERSHOP_EMAIL = 'support@barberstore.com';
+export const BARBERSHOP_EMAIL = 'support@napoleonbarbershop.com';
 export const BARBERSHOP_INSTAGRAM = 'napoleonsbarbershopid';
 export const BARBERSHOP_TIKTOK = '@napoleonsbarbershopid';
 export const BARBERSHOP_TWITTER = 'napoleonsbarber';

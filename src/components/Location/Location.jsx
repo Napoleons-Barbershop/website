@@ -14,7 +14,7 @@ const Location = () => {
     <Container id="Location" style={{padding: '90px 50px'}}>
       <Row>
         <Col style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-evenly', alignItems: 'center', padding: '40px 0px'}}>
-          <LocationImage src={LocationMapImage} alt="1301 Barberstore Location" onClick={onImageClick} />
+          <LocationImage src={LocationMapImage} alt="Napoleon Barbershop Location" onClick={onImageClick} />
           <LocationAddress>
             <h3 style={{color: MAROON, fontSize: 28}}>Alamat</h3>
             <address style={{fontSize: 18, fontStyle: 'normal'}}>
