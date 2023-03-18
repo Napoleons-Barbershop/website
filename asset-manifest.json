@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/1301-barbershop/static/css/main.3bf26cff.css",
-    "main.js": "/1301-barbershop/static/js/main.0a1bdc91.js",
+    "main.js": "/1301-barbershop/static/js/main.5d6281e9.js",
     "static/js/787.2bab808a.chunk.js": "/1301-barbershop/static/js/787.2bab808a.chunk.js",
     "static/media/about-us-image-3.jpg": "/1301-barbershop/static/media/about-us-image-3.2b76f1e4659c196aa949.jpg",
     "static/media/charity-image-1.jpg": "/1301-barbershop/static/media/charity-image-1.35ec8c522afbdc9cfad8.jpg",
@@ -18,11 +18,11 @@
     "static/media/revicons.woff": "/1301-barbershop/static/media/revicons.e8746a624ed098489406.woff",
     "index.html": "/1301-barbershop/index.html",
     "main.3bf26cff.css.map": "/1301-barbershop/static/css/main.3bf26cff.css.map",
-    "main.0a1bdc91.js.map": "/1301-barbershop/static/js/main.0a1bdc91.js.map",
+    "main.5d6281e9.js.map": "/1301-barbershop/static/js/main.5d6281e9.js.map",
     "787.2bab808a.chunk.js.map": "/1301-barbershop/static/js/787.2bab808a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3bf26cff.css",
-    "static/js/main.0a1bdc91.js"
+    "static/js/main.5d6281e9.js"
   ]
 }
