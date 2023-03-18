@@ -23,7 +23,7 @@ const ContactUs = () => {
   return (
     <ContactUsContainer id="Contact Us">
       <Row>
-        <ContactUsCol md={6}>
+        <ContactUsCol>
           <ContactUsSectionWrapper>
             <ContactUsSectionTitle>
               Contact Us
@@ -70,7 +70,7 @@ const ContactUs = () => {
             </div>
           </ContactUsSectionWrapper>
         </ContactUsCol>
-        <ContactUsCol md={6} style={{textAlign: 'center'}}>
+        <ContactUsCol style={{textAlign: 'center'}}>
           <ContactUsSectionTitle>Address</ContactUsSectionTitle>
           <div>
             <ContactUsLocationImage style={{paddingBottom: 20}} src={LocationMapImage} alt="1301 Barberstore Location" onClick={onImageClick} />

@@ -1,3 +1,4 @@
+import { Col } from 'react-bootstrap';
 import styled from 'styled-components';
 
 export const AboutUsCardWrapper = styled.div`
@@ -6,7 +7,7 @@ export const AboutUsCardWrapper = styled.div`
   align-items: center;
   flex-direction: column;
   text-align: center;
-  @media (max-width: 768px) {
+  @media (max-width: 800px) {
     padding-bottom: 40px;
   }
 `
@@ -14,12 +15,18 @@ export const AboutUsCardWrapper = styled.div`
 export const AboutUsTitle = styled.span`
   font-size: 1.3rem;
   height: 70px;
-  @media (max-width: 768px) {
+  line-height: 1;
+  @media (max-width: 800px) {
     height: 40px;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
     display: block;
     max-width: 80vw;
+  }
+`
+export const AboutUsCol = styled(Col)`
+  @media (max-width: 800px) {
+    flex-basis: 100%;
   }
 `
