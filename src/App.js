@@ -1,4 +1,4 @@
-import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import { Route, Routes, HashRouter } from 'react-router-dom';
 import Home from './screens/Home/Home';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -7,11 +7,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <HashRouter basename='/'>
       <Routes>
         <Route path='/' element={<Home />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
