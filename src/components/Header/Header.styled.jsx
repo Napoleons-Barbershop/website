@@ -18,7 +18,7 @@ export const HeaderColumn = styled(Col)`
   display: flex;
   align-items: center; 
   justify-content: start;
-  @media (max-width: 1000px) {
+  @media (max-width: 1070px) {
     justify-content: space-between;
   }
 `
@@ -142,14 +142,14 @@ export const BookingLinkMobile = styled(HashLink)`
 
 export const DesktopMenuWrapper = styled.nav`
   display: block;
-  @media (max-width: 1000px) {
+  @media (max-width: 1070px) {
     display: none;
   }
 `
 
 export const MobileMenuWrapper = styled.nav`
   display: none;
-  @media (max-width: 1000px) {
+  @media (max-width: 1070px) {
     display: block;
   }
 `

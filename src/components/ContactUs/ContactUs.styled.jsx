@@ -20,7 +20,17 @@ export const ContactUsSectionWrapper = styled.div`
 `
 
 export const ContactUsSectionTitle = styled.h2`
-  padding-bottom: 50px;
+  padding-bottom: 10px;
+  font-size: 1.8rem;
+  color: inherit;
+  @media (max-width: 768px) {
+    padding-bottom: 0px;
+  }
+`
+
+export const ContactUsSectionOpeningHoursTitle = styled.h2`
+  padding-top: 50px;
+  padding-bottom: 10px;
   font-size: 1.8rem;
   color: inherit;
   @media (max-width: 768px) {

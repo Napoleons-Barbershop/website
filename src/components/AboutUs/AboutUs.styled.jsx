@@ -1,6 +1,15 @@
 import { Col } from 'react-bootstrap';
 import styled from 'styled-components';
 
+export const AboutUsHeading = styled.h3`
+  text-align: center;
+  font-size: 1.8rem;
+  padding-bottom: 50px;
+  @media (max-width: 800px) {
+    padding-bottom: 30px;
+  }
+`
+
 export const AboutUsCardWrapper = styled.div`
   display: flex;
   justify-content: center;

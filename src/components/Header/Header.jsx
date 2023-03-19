@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { DesktopMenuWrapper, MobileMenuWrapper, HeaderLogo, HeaderLogoImage, HeaderMenuList, HeaderNavArea, MenuItemLink, RecruitmentLink, HeaderColumn, MenuToggleInput, RecruitmentLinkMobile, MenuItemLinkMobile, BookingLink, BookingLinkMobile } from "./Header.styled";
-import { menuItems, WHATSAPP_LINK } from '../../utils/constants'
+import { menuItems, RECRUITMENT_LINK, WHATSAPP_LINK } from '../../utils/constants'
 import companyLogo from '../../assets/logo.jpg';
 import { Col, Row } from 'react-bootstrap';
 import { GiHamburgerMenu } from 'react-icons/gi';
@@ -25,6 +25,10 @@ const Header = () => {
     window.open(WHATSAPP_LINK, '_self')
   }
 
+  const onRecruitmentClick = () => {
+    window.open(RECRUITMENT_LINK, '_self');
+  }
+
   return (
     <header>
       <HeaderNavArea fluid>
@@ -42,7 +46,7 @@ const Header = () => {
                     )
                   } else if(menu === "Recruitment") {
                     return (
-                      <RecruitmentLink key={menu} to={`#${menu}`}>{menu}</RecruitmentLink>
+                      <RecruitmentLink onClick={onRecruitmentClick} key={menu} to={`#${menu}`}>{menu}</RecruitmentLink>
                     )
                   }
                   return (
@@ -73,7 +77,7 @@ const Header = () => {
                     )
                   } else if(menu === "Recruitment") {
                     return (
-                      <RecruitmentLinkMobile key={menu} to={`#${menu}`}>{menu}</RecruitmentLinkMobile>
+                      <RecruitmentLinkMobile onClick={onRecruitmentClick} key={menu} to={`#${menu}`}>{menu}</RecruitmentLinkMobile>
                     )
                   }
                   return (

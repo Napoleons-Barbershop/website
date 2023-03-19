@@ -12,7 +12,8 @@ import {
   ContactUsSectionWrapper,
   ContactUsSectionTitle,
   ContactUsAddress,
-  ContactUsLocationImage
+  ContactUsLocationImage,
+  ContactUsSectionOpeningHoursTitle
 } from './ContactUs.styled';
 
 const ContactUs = () => {
@@ -67,6 +68,12 @@ const ContactUs = () => {
               <a href={`mailto:${BARBERSHOP_EMAIL}`} style={{fontSize: '1rem', fontStyle: 'normal', textDecoration: 'none', width: 285, color: NAPOLEON_BROWN_COLOR}}>
                 {BARBERSHOP_EMAIL}
               </a>
+            </div>
+            <div>
+              <ContactUsSectionOpeningHoursTitle>Opening Hours</ContactUsSectionOpeningHoursTitle>
+              <span style={{fontSize: 18, fontStyle: 'normal', textAlign: 'center', color: NAPOLEON_BROWN_COLOR}}>
+                Mon - Sun: 10:00 - 21:00
+              </span>
             </div>
           </ContactUsSectionWrapper>
         </ContactUsCol>
