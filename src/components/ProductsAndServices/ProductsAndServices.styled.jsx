@@ -14,6 +14,22 @@ export const ProductsAndServicesContainerTitle = styled(Container)`
   font-size: 1.8rem;
 `
 
+export const ProductsAndServices6MonthCol = styled(Col)`
+  padding-bottom: 40px;
+  order: 4;
+  @media (max-width: 768px) {
+    order: 3;
+  }
+`
+
+export const ProductsAndServicesHairSpaCol = styled(Col)`
+  padding-bottom: 40px;
+  order: 3;
+  @media (max-width: 768px) {
+    order: 4;
+  }
+`
+
 export const ProductsAndServicesProductWrapper = styled.div`
   display: flex;
   align-items: center;
