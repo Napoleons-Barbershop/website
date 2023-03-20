@@ -13,7 +13,7 @@ import { NAPOELON_CAPTION_BROWN_COLOR, NAPOLEON_BROWN_COLOR, WHITE } from '../..
 const Charity = () => {
   return (
     <div id="Social Awareness" style={{padding: '100px 50px 75px 50px', backgroundColor: NAPOLEON_BROWN_COLOR, color: WHITE}}>
-      <h3 style={{textAlign: 'center', fontSize: '1.8rem'}}>Charity Work</h3>
+      <h3 style={{textAlign: 'center', fontSize: '1.8rem'}}>Social Awareness</h3>
       <Carousel responsive={CAROUSEL_RESPONSIVE_SIZES_CHARITY} draggable swipeable infinite autoPlay autoPlaySpeed={4000} transitionDuration={500} removeArrowOnDeviceType={["tablet", "mobile"]}>
         <div style={{height: 'inherit', padding: '20px 0px 20px 20px', display: 'flex', flexDirection: 'column'}}>
           <img loading='lazy' src={FirstImage} alt="Carousel Image" style={{height: 300, width: '100%', objectFit: 'cover'}} />
