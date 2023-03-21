@@ -1,0 +1,24 @@
+name: Deploy
+
+# Manual trigger for this workflow
+on: workflow_dispatch
+
+permissions:
+  id-token: write
+  contents: read
+defaults:
+  run:
+    shell: bash
+    
+jobs:
+  deploy:
+    name: Deploy to Github Pages
+    # Runs on mac os
+    runs-on: macos-latest
+    steps:
+      # Build the debug test app while increasing the node space and Yarn's network timeout to prevent timeour when downloading packages
+      - name: Install packages and deploy
+        run: |
+          npm install
+          npm run deploy
+      
