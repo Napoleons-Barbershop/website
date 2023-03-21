@@ -24,6 +24,8 @@ jobs:
           node-version: 16.13.2
       # Build the debug test app while increasing the node space and Yarn's network timeout to prevent timeour when downloading packages
       - name: Install packages and deploy
+        env:
+          CI: ""
         run: |
           npm install
           npm run deploy
