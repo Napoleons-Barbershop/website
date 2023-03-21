@@ -1,6 +1,4 @@
 import React from 'react';
-import { BLACK, MAIN_COLOR, NAPOLEON_BG, NAPOLEON_TEXT_COLOR, WHITE } from '../../utils/colors';
-import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { ProductsAndServicesContainer, ProductsAndServicesContainerTitle, ProductsAndServicesProductWrapper, ProductsAndServicesProductTitle, ProductsAndServicesProductPrice, ProductsAndServicesProductDescription, ProductsAndServices6MonthCol, ProductsAndServicesHairSpaCol } from './ProductsAndServices.styled';
