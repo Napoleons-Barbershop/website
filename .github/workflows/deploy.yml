@@ -9,13 +9,19 @@ permissions:
 defaults:
   run:
     shell: bash
-    
+
 jobs:
   deploy:
     name: Deploy to Github Pages
     # Runs on mac os
     runs-on: macos-latest
     steps:
+      # Checks out a repo so the workflow can access it
+      - uses: actions/checkout@v3
+      # Setup the node with version 16.13.2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16.13.2
       # Build the debug test app while increasing the node space and Yarn's network timeout to prevent timeour when downloading packages
       - name: Install packages and deploy
         run: |
