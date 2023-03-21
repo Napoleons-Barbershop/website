@@ -26,7 +26,7 @@ const AboutUs = () => {
             <div style={{paddingBottom: 20}}>
               <FaUserTie size={25} />
             </div>
-            <AboutUsTitle><b>2. Flexible membership plans</b></AboutUsTitle>
+            <AboutUsTitle><b>2. Flexible Membership Plans</b></AboutUsTitle>
             <span style={{textAlign: 'justify'}}>We provide a 3-month and 6-month membership to ease you! Get our membership, earn our access for our all-you-can-cut membership, and just cut-and-go with no hassle.</span>
           </AboutUsCardWrapper>
         </AboutUsCol>
@@ -44,7 +44,7 @@ const AboutUs = () => {
             <div style={{paddingBottom: 20}}>
               <GrPlan size={25} />
             </div>
-            <AboutUsTitle><b>4. Social awareness</b></AboutUsTitle>
+            <AboutUsTitle><b>4. Social Awareness</b></AboutUsTitle>
             <span style={{textAlign: 'justify'}}>We have decided to also be accountable for the society in need. Hence, part of our earnings will be donated to respective parties. See our social journey on our website!</span>
           </AboutUsCardWrapper>
         </AboutUsCol>
