@@ -17,7 +17,7 @@ const Charity = () => {
       <Carousel responsive={CAROUSEL_RESPONSIVE_SIZES_CHARITY} draggable swipeable infinite autoPlay autoPlaySpeed={4000} transitionDuration={500} removeArrowOnDeviceType={["tablet", "mobile"]}>
         <div style={{height: 'inherit', padding: '20px 0px 20px 20px', display: 'flex', flexDirection: 'column'}}>
           <img loading='lazy' src={FirstImage} alt="Carousel Image" style={{height: 300, width: '100%', objectFit: 'cover'}} />
-          <caption style={{color: NAPOELON_CAPTION_BROWN_COLOR}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</caption>
+          <caption style={{color: NAPOELON_CAPTION_BROWN_COLOR}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</caption>
         </div>
         <div style={{height: 'inherit', padding: '20px 0px 20px 20px', display: 'flex', flexDirection: 'column'}}>
           <img loading='lazy' src={SecondImage} alt="Carousel Image" style={{height: 300, width: '100%', objectFit: 'cover'}} />
