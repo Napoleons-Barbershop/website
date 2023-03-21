@@ -82,7 +82,7 @@ const ContactUs = () => {
           <div>
             <ContactUsLocationImage style={{paddingBottom: 20}} src={LocationMapImage} alt="Napoleon Barbershop Location" onClick={onImageClick} />
           </div>
-          <ContactUsAddress>
+          <ContactUsAddress onClick={onImageClick} style={{cursor: 'pointer'}}>
             <address style={{fontSize: 18, fontStyle: 'normal', textAlign: 'center', color: NAPOLEON_BROWN_COLOR}}>
               Sentra Niaga Puri Indah Blok T6 no 31, <br /> 
               Jl. Puri Indah Raya No.32, RT.1/RW.2, <br /> 
