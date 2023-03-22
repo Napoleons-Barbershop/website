@@ -1,34 +1,35 @@
 import React from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { ProductsAndServicesContainer, ProductsAndServicesContainerTitle, ProductsAndServicesProductWrapper, ProductsAndServicesProductTitle, ProductsAndServicesProductPrice, ProductsAndServicesProductDescription, ProductsAndServices6MonthCol, ProductsAndServicesHairSpaCol } from './ProductsAndServices.styled';
+import { ProductsAndServicesContainer, ProductsAndServicesContainerTitle, ProductsAndServicesProductWrapper, ProductsAndServicesProductTitle, ProductsAndServicesProductPrice, ProductsAndServicesProductDescription, ProductsAndServices6MonthCol, ProductsAndServicesHairSpaCol, ProductsAndServices3MonthCol, ProductsAndServicesStandardCutCol, ProductsAndServicesShavingRow, ProductsAndServicesFaceMaskRow, ProductsAndServicesHairColouringRow, ProductsAndServicesShavingCol, ProductsAndServicesFaceMaskCol, ProductsAndServicesHairColouringCol } from './ProductsAndServices.styled';
 
 const ProductsAndServices = () => {
   return (
     <ProductsAndServicesContainer id='Products & Services' fluid>
       <ProductsAndServicesContainerTitle>Our Products</ProductsAndServicesContainerTitle>
         <Row>
-          <Col md={6} style={{paddingBottom: 40, order: 1}}>
+          <ProductsAndServicesStandardCutCol md={6}>
             <ProductsAndServicesProductWrapper>
               <ProductsAndServicesProductTitle>Standard Men's Package</ProductsAndServicesProductTitle>
               <ProductsAndServicesProductPrice>99k</ProductsAndServicesProductPrice>
             </ProductsAndServicesProductWrapper>
             <ProductsAndServicesProductDescription>Experience our complete starter pack for a clean and sleek haircut, just as you expected.</ProductsAndServicesProductDescription>
-          </Col>
+          </ProductsAndServicesStandardCutCol>
 
-          <Col md={6} style={{paddingBottom: 40, order: 2}}>
+          <ProductsAndServices3MonthCol md={6}>
             <ProductsAndServicesProductWrapper>
               <ProductsAndServicesProductTitle>3 Month Membership</ProductsAndServicesProductTitle>
               <ProductsAndServicesProductPrice>290k</ProductsAndServicesProductPrice>
             </ProductsAndServicesProductWrapper>
             <ProductsAndServicesProductDescription>An all-you-can-cut 3 month membership for the period to accomodate your busy schedule.</ProductsAndServicesProductDescription>
-          </Col>
+          </ProductsAndServices3MonthCol>
 
           <ProductsAndServicesHairSpaCol md={6} style={{paddingBottom: 40}}>
             <ProductsAndServicesProductWrapper>
               <ProductsAndServicesProductTitle>Hair Spa</ProductsAndServicesProductTitle>
               <ProductsAndServicesProductPrice>20k</ProductsAndServicesProductPrice>
             </ProductsAndServicesProductWrapper>
+            <ProductsAndServicesProductDescription>Guaranteed you'll enjoy this one for a healthy scalp and stress-free head massage.</ProductsAndServicesProductDescription>
           </ProductsAndServicesHairSpaCol>
 
           <ProductsAndServices6MonthCol md={6}>
@@ -39,55 +40,35 @@ const ProductsAndServices = () => {
             <ProductsAndServicesProductDescription>An all-you-can-cut 6 month membership for the period to accomodate your busy schedule.</ProductsAndServicesProductDescription>
           </ProductsAndServices6MonthCol>
 
-          <Row style={{paddingRight: 0, order: 5}}>
-            <Col md={6} style={{paddingBottom: 40, paddingRight: 0}}>
+          <ProductsAndServicesShavingRow>
+            <ProductsAndServicesShavingCol md={6}>
               <ProductsAndServicesProductWrapper>
-                <ProductsAndServicesProductTitle>Hot Towel Shaving</ProductsAndServicesProductTitle>
+                <ProductsAndServicesProductTitle>Shaving</ProductsAndServicesProductTitle>
                 <ProductsAndServicesProductPrice>25k</ProductsAndServicesProductPrice>
               </ProductsAndServicesProductWrapper>
-            </Col>
-          </Row>
+              <ProductsAndServicesProductDescription>The ladies will love your trimmed beard, kings.</ProductsAndServicesProductDescription>
+            </ProductsAndServicesShavingCol>
+          </ProductsAndServicesShavingRow>
           
-          <Row style={{paddingRight: 0, order: 6}}>
-            <Col md={6} style={{paddingBottom: 40, paddingRight: 0}}>
+          <ProductsAndServicesFaceMaskRow>
+            <ProductsAndServicesFaceMaskCol md={6}>
               <ProductsAndServicesProductWrapper>
                 <ProductsAndServicesProductTitle>Charcoal Face Mask</ProductsAndServicesProductTitle>
                 <ProductsAndServicesProductPrice>50k</ProductsAndServicesProductPrice>
               </ProductsAndServicesProductWrapper>
-            </Col>
-          </Row>
+              <ProductsAndServicesProductDescription>"Charcoal masks work to deep clean your pores, removing excess dirt, oil, and other impurities. They also have some exfoliating properties, so your skin will feel smoother after use." -Google</ProductsAndServicesProductDescription>
+            </ProductsAndServicesFaceMaskCol>
+          </ProductsAndServicesFaceMaskRow>
           
-          <Row style={{paddingRight: 0, order: 7}}>
-            <Col md={6} style={{paddingBottom: 40, paddingRight: 0}}>
+          <ProductsAndServicesHairColouringRow>
+            <ProductsAndServicesHairColouringCol md={6}>
               <ProductsAndServicesProductWrapper>
                 <ProductsAndServicesProductTitle>Basic Hair Coloring</ProductsAndServicesProductTitle>
                 <ProductsAndServicesProductPrice>200k</ProductsAndServicesProductPrice>
               </ProductsAndServicesProductWrapper>
-            </Col>
-          </Row>
-          
-          {/* <Col md={6}>
-            <div style={{display: 'flex', alignItems: 'center', width: '100%', justifyContent: 'space-between'}}>
-              <h4 style={{color: NAPOLEON_TEXT_COLOR}}>Perm</h4>
-              <span style={{color: NAPOLEON_TEXT_COLOR, fontSize: '1.5rem'}}>1000k</span>
-            </div>
-            <p style={{fontSize: '0.75rem'}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
-          </Col>
-
-          <Col md={6}>
-            <div style={{display: 'flex', alignItems: 'center', width: '100%', justifyContent: 'space-between'}}>
-              <h4 style={{color: NAPOLEON_TEXT_COLOR}}>Membership</h4>
-              <span style={{color: NAPOLEON_TEXT_COLOR, fontSize: '1.5rem'}}>2500k</span>
-            </div>
-            <p style={{fontSize: '0.75rem'}}>Lorem ipsum dolor sit amet, consectetur</p>
-          </Col>
-          <Col md={6}>
-            <div style={{display: 'flex', alignItems: 'center', width: '100%', justifyContent: 'space-between'}}>
-              <h4 style={{color: NAPOLEON_TEXT_COLOR}}>Colouring</h4>
-              <span style={{color: NAPOLEON_TEXT_COLOR, fontSize: '1.5rem'}}>700k</span>
-            </div>
-            <p style={{fontSize: '0.75rem'}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
-          </Col> */}
+              <ProductsAndServicesProductDescription>YOLO, right?</ProductsAndServicesProductDescription>
+            </ProductsAndServicesHairColouringCol>
+          </ProductsAndServicesHairColouringRow>
         </Row>
     </ProductsAndServicesContainer>
   )

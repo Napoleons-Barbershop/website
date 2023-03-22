@@ -14,20 +14,100 @@ export const ProductsAndServicesContainerTitle = styled(Container)`
   font-size: 1.8rem;
 `
 
+export const ProductsAndServicesStandardCutCol = styled(Col)`
+  padding-bottom: 40px;
+  order: 1;
+  padding-right: 4px;
+  @media (max-width: 768px) {
+    order: 3;
+    padding-right: 0px;
+  }
+`
+
+export const ProductsAndServices3MonthCol = styled(Col)`
+  padding-bottom: 40px;
+  order: 2;
+  padding-right: 4px;
+  @media (max-width: 768px) {
+    order: 1;
+    padding-right: 0px;
+  }
+`
+
 export const ProductsAndServices6MonthCol = styled(Col)`
   padding-bottom: 40px;
   order: 4;
+  padding-right: 4px;
   @media (max-width: 768px) {
-    order: 3;
+    order: 2;
+    padding-right: 0px;
   }
 `
 
 export const ProductsAndServicesHairSpaCol = styled(Col)`
   padding-bottom: 40px;
   order: 3;
+  padding-right: 4px;
   @media (max-width: 768px) {
-    order: 4;
+    padding-right: 0px;
   }
+`
+
+export const ProductsAndServicesShavingCol = styled(Col)`
+  padding-bottom: 40px;
+  padding-right: 0px;
+  margin-left: 0px;
+  @media (max-width: 768px) {
+    padding-right: 0px;
+  }
+`
+
+export const ProductsAndServicesFaceMaskCol = styled(Col)`
+  padding-bottom: 40px;
+  padding-right: 0px;
+  margin-left: 0px;
+  @media (max-width: 768px) {
+    padding-right: 0px;
+  }
+`
+
+export const ProductsAndServicesHairColouringCol = styled(Col)`
+  padding-bottom: 40px;
+  padding-right: 0px;
+  margin-left: 0px;
+  @media (max-width: 768px) {
+    padding-right: 0px;
+  }
+`
+
+export const ProductsAndServicesShavingRow = styled(Row)`
+  padding-right: 0px;
+  order: 5;
+  margin-left: 0px;
+  padding-left: 0px;
+  /* @media (max-width: 768px) {
+    order: 4;
+  } */
+`
+
+export const ProductsAndServicesFaceMaskRow = styled(Row)`
+  padding-right: 0px;
+  order: 6;
+  margin-left: 0px;
+  padding-left: 0px;
+  /* @media (max-width: 768px) {
+    order: 4;
+  } */
+`
+
+export const ProductsAndServicesHairColouringRow = styled(Row)`
+  padding-right: 0px;
+  order: 7;
+  margin-left: 0px;
+  padding-left: 0px;
+  /* @media (max-width: 768px) {
+    order: 4;
+  } */
 `
 
 export const ProductsAndServicesProductWrapper = styled.div`
