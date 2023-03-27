@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import {HashLink} from 'react-router-hash-link'
 import { BLACK, DARK_GREEN, HEADER_BG_COLOR, HOVER_ITEM_COLOR, MAIN_COLOR, MAROON, NAPOLEON_BG, NAPOLEON_BROWN_COLOR, NAPOLEON_COMPLEMENT_COLOR, NAPOLEON_COMPLEMENT_HOVER_COLOR, WHITE } from '../../utils/colors';
-import { Col, Container } from 'react-bootstrap';
+import { Col, Container, Button } from 'react-bootstrap';
 
 export const HeaderNavArea = styled(Container)`
   margin: 0 auto;
@@ -17,7 +17,7 @@ export const HeaderNavArea = styled(Container)`
 export const HeaderColumn = styled(Col)`
   display: flex;
   align-items: center; 
-  justify-content: start;
+  justify-content: space-between;
   @media (max-width: 1070px) {
     justify-content: space-between;
   }
@@ -75,7 +75,7 @@ export const MenuItemLinkMobile = styled(HashLink)`
   }
 `
 
-export const RecruitmentLink = styled(HashLink)`
+export const RecruitmentLink = styled(Button)`
   display: block;
   font-size: inherit;
   color: ${BLACK};
@@ -84,14 +84,29 @@ export const RecruitmentLink = styled(HashLink)`
   padding: 0.7rem 1rem;
   background-color: ${NAPOLEON_BROWN_COLOR};
   margin-right: 10px;
+  border: none;
+  border-radius: 0;
+  /* width: 100%; */
 
   &:hover {
     color: ${WHITE};
     background-color: ${HOVER_ITEM_COLOR};
   }
+
+  &:active {
+    color: ${BLACK} !important;
+    background-color: ${NAPOLEON_BROWN_COLOR} !important;
+    border-color: none !important;
+  }
+
+  &:disabled {
+    color: ${BLACK} !important;
+    background-color: ${NAPOLEON_BROWN_COLOR} !important;
+    border-color: none !important;
+  }
 `
 
-export const RecruitmentLinkMobile = styled(HashLink)`
+export const RecruitmentLinkMobile = styled(Button)`
   display: block;
   font-size: inherit;
   color: ${BLACK};
@@ -101,10 +116,25 @@ export const RecruitmentLinkMobile = styled(HashLink)`
   font-size: 1.5rem;
   margin: 1rem 0;
   background-color: ${NAPOLEON_BROWN_COLOR};
+  border: none;
+  border-radius: 0;
+  width: 100%;
 
   &:hover {
     color: ${WHITE};
     background-color: ${HOVER_ITEM_COLOR};
+  }
+
+  &:active {
+    color: ${BLACK} !important;
+    background-color: ${NAPOLEON_BROWN_COLOR} !important;
+    border-color: none !important;
+  }
+
+  &:disabled {
+    color: ${BLACK} !important;
+    background-color: ${NAPOLEON_BROWN_COLOR} !important;
+    border-color: none !important;
   }
 `
 
@@ -115,11 +145,11 @@ export const BookingLink = styled(HashLink)`
   text-decoration: none;
   text-align: left;
   padding: 0.7rem 1rem;
-  background-color: ${NAPOLEON_COMPLEMENT_COLOR};
+  background-color: ${NAPOLEON_BROWN_COLOR};
 
   &:hover {
     color: ${WHITE};
-    background-color: ${NAPOLEON_COMPLEMENT_HOVER_COLOR};
+    background-color: ${HOVER_ITEM_COLOR};
   }
 `
 
@@ -132,7 +162,45 @@ export const BookingLinkMobile = styled(HashLink)`
   padding: 1rem;
   font-size: 1.5rem;
   margin: 1rem 0;
+  background-color: ${NAPOLEON_BROWN_COLOR};
+
+  &:hover {
+    color: ${WHITE};
+    background-color: ${HOVER_ITEM_COLOR};
+  }
+`
+
+export const LoginButton = styled(Button)`
+  display: block;
+  font-size: inherit;
+  color: ${BLACK};
+  text-decoration: none;
+  text-align: left;
+  padding: 0.7rem 1rem;
   background-color: ${NAPOLEON_COMPLEMENT_COLOR};
+  border: none;
+  border-radius: 0;
+  width: 100%;
+
+  &:hover {
+    color: ${WHITE};
+    background-color: ${NAPOLEON_COMPLEMENT_HOVER_COLOR};
+  }
+`
+
+export const LoginButtonMobile = styled(Button)`
+  display: block;
+  font-size: inherit;
+  color: ${BLACK};
+  text-decoration: none;
+  text-align: left;
+  padding: 1rem;
+  font-size: 1.5rem;
+  margin: 1rem 0;
+  background-color: ${NAPOLEON_COMPLEMENT_COLOR};
+  border: none;
+  border-radius: 0;
+  width: 100%;
 
   &:hover {
     color: ${WHITE};

@@ -1,4 +1,4 @@
-export const menuItems = ['Home', 'About Us', 'Products & Services', 'Social Awareness', 'Contact Us', 'Recruitment', 'Booking']
+export const menuItems = ['Home', 'About Us', 'Products & Services', 'Social Awareness', 'Contact Us', 'Recruitment', 'Booking', 'Login']
 export const MAPS_LINK = 'https://maps.app.goo.gl/Z5fFNVq9iFpBcWiN8?g_st=ic';
 export const WHATSAPP_LINK = 'https://wa.me/6288223791220';
 export const RECRUITMENT_LINK = 'https://forms.gle/4YxEP9H1LdzWszLY6';
@@ -35,3 +35,6 @@ export const CAROUSEL_RESPONSIVE_SIZES_CHARITY = {
     items: 1,
   }
 };
+
+export const PASSWORD_REGEX = `^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$`
+export const ADMIN_EMAIL = 'master@napoleonsbarbershop.com';
