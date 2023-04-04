@@ -37,4 +37,15 @@ export const CAROUSEL_RESPONSIVE_SIZES_CHARITY = {
 };
 
 export const PASSWORD_REGEX = `^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$`
-export const ADMIN_EMAIL = 'master@napoleonsbarbershop.com';
+export const ADMIN_EMAIL = 'napoleonsbarbershop@gmail.com';
+
+export const MEMBERSHIP_PLANS = [
+  {
+    label: '3 Month Membership',
+    eventKey: 3
+  },
+  {
+    label: '6 Month Membership',
+    eventKey: 6
+  }
+]

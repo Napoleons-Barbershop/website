@@ -120,7 +120,14 @@ const LoginModal = () => {
     getRedirectResult(auth).then((result) => {
       setLoginLoading(false);
       if(result?.user) {
-        setUser(result?.user);
+        const { user, stsTokenManager, displayName, email } = result;
+        setUser(user);
+        localStorage.setItem('user', JSON.stringify({
+          accessToken: stsTokenManager.accessToken,
+          refreshToken: stsTokenManager.refreshToken,
+          displayName,
+          email
+        }))
       }
     })
   }, [])

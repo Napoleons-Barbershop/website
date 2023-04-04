@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UserProfile from '../../components/UserProfile/UserProfile';
+import AdminProfile from '../../components/AdminProfile/AdminProfile';
 import useLogin from '../../hooks/useLogin';
 import { ADMIN_EMAIL } from '../../utils/constants';
 
@@ -21,12 +22,6 @@ const Profile = () => {
     <>
       {isAdmin ? <AdminProfile /> : <UserProfile />}
     </>
-  )
-}
-
-const AdminProfile = () => {
-  return (
-    <>Admin Profile</>
   )
 }
 
