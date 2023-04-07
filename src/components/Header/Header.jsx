@@ -9,14 +9,14 @@ import { slide as Menu } from 'react-burger-menu';
 import { getAuth, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider, OAuthProvider, signInWithRedirect } from "firebase/auth";
 
 import '../../App.css';
-import useFirebaseConfig from '../../hooks/firebase';
+// import useFirebaseConfig from '../../hooks/firebase';
 import useLogin from '../../hooks/useLogin';
 import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
 
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
-  const {auth} = useFirebaseConfig();
+  // const {auth} = useFirebaseConfig();
   const { setOpenLoginModal, user, loginLoading } = useLogin();
   const navigate = useNavigate();
 

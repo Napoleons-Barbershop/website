@@ -49,3 +49,6 @@ export const MEMBERSHIP_PLANS = [
     eventKey: 6
   }
 ]
+
+export const SIX_MONTHS_IN_MILLISECONDS = 15778463000;
+export const THREE_MONTHS_IN_MILLISECONDS = 7889231500;

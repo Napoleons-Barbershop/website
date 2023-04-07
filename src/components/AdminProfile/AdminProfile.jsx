@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
 import { Col, Container, Row, Form, Dropdown, Button } from 'react-bootstrap';
 import { NAPOLEON_BROWN_COLOR } from '../../utils/colors';
-import { MEMBERSHIP_PLANS } from '../../utils/constants';
+import { MEMBERSHIP_PLANS, SIX_MONTHS_IN_MILLISECONDS, THREE_MONTHS_IN_MILLISECONDS } from '../../utils/constants';
 import Webcam from "react-webcam";
 import { AiFillCamera } from 'react-icons/ai'
 import CameraModal from '../CameraModal/CameraModal';
+import firebase from '../../utils/firebase';
+import { ref, set } from "firebase/database";
+import { sanitizeEmail } from '../../utils/utils';
+import { useNavigate } from 'react-router-dom';
 
 const AdminProfile = () => {
+
+  const { database } = firebase();
+  const navigate = useNavigate();
 
   const [selectedMembershipOption, setSelectedMembershipOption] = useState('3');
   const [pictureMode, setPictureMode] = useState(false);
@@ -28,10 +35,32 @@ const AdminProfile = () => {
 
   const handleCloseCameraModal = () => setPictureMode(false);
 
-  const onSubmitMembershipPlan = (evt) => {
+  const onSubmitMembershipPlan = async (evt) => {
     evt.preventDefault();
     if(email && memberPicture && selectedMembershipOption) {
-      console.log('submit to firebase');
+      const sanitizedEmail = sanitizeEmail(email);
+      let membershipStart = new Date().getTime();
+      let membershipExpiry;
+
+      if(selectedMembershipOption == '6') {
+        membershipExpiry = membershipStart + SIX_MONTHS_IN_MILLISECONDS;
+      } else if (selectedMembershipOption == '3') {
+        membershipExpiry = membershipStart + THREE_MONTHS_IN_MILLISECONDS;
+      }
+
+      const payload = {
+        picture: memberPicture,
+        membershipStart,
+        membershipExpiry
+      }
+
+      try {
+        await set(ref(database, `users/${sanitizedEmail}`), payload)
+        // TODO: Add a success alert
+        navigate('/');
+      } catch(err) {
+        console.error(err);
+      }
     }
   }
 

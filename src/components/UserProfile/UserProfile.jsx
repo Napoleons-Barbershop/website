@@ -6,11 +6,33 @@ import firebase from '../../utils/firebase';
 import { signOut } from "firebase/auth";
 import useLogin from '../../hooks/useLogin';
 import { useNavigate } from 'react-router-dom';
+import { ref, get, child, set } from "firebase/database";
+import { useEffect } from 'react';
+import { formatDate, sanitizeEmail } from '../../utils/utils';
+import { useState } from 'react';
 
 const UserProfile = () => {
-  const auth = firebase();
-  const { setUser } = useLogin();
+  const { auth, database } = firebase();
+  const { user, setUser } = useLogin();
   const navigate = useNavigate();
+
+  const [userProfileData, setUserProfileData] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      const sanitizedEmail = sanitizeEmail(user?.email);
+      if(sanitizeEmail) {
+        const snapshot = await get(child(ref(database), `users/${sanitizedEmail}`));
+        if(snapshot.exists()) {
+          setUserProfileData(snapshot.val());
+        } else {
+          console.error('No data available');
+          setUserProfileData(null);
+        }
+      }
+    }
+    )();
+  }, [])
 
   const onSignoutClick = () => {
     setUser(null);
@@ -27,11 +49,11 @@ const UserProfile = () => {
       <Row>
         <Col>
           <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
-            <ProfileImage src={PLACEHOLDER_IMAGE} alt="Placeholder" />
+            <ProfileImage src={userProfileData && userProfileData.picture} alt="Placeholder" />
             <div style={{paddingTop: 50}}>
-              <p>{`Name: Test User`}</p>
-              <p>{`Membership starts: 23/03/2023`}</p>
-              <p>{`Membership ends: 23/6/2023`}</p>
+              <p>{`Email: ${userProfileData && user?.email}`}</p>
+              <p>{`Membership starts: ${formatDate(userProfileData?.membershipStart)}`}</p>
+              <p>{`Membership ends: ${formatDate(userProfileData?.membershipExpiry)}`}</p>
             </div>
             <Button variant="danger" onClick={onSignoutClick}>Sign out</Button>
           </div>

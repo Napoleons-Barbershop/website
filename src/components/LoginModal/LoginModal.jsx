@@ -18,7 +18,7 @@ const LoginModal = () => {
   const [rePassword, setRePassword] = useState(null);
   const [mode, setMode] = useState('login');
   const [validated, setValidated] = useState(false);
-  const auth = firebase();
+  const { auth } = firebase();
 
   const handleClose = () => {
     setOpenLoginModal(false);
