@@ -21,7 +21,6 @@ const AdminProfile = () => {
   const [memberPicture, setMemberPicture] = useState(null);
 
   const renderDropdownToggleText = () => {
-    console.log('abcabc', selectedMembershipOption)
     if(selectedMembershipOption === '3') {
       return '3 Month Membership'
     } else if(selectedMembershipOption === '6') {

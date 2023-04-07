@@ -35,7 +35,6 @@ const CameraModal = ({ show, handleClose, memberPicture, setMemberPicture}) => {
 
   const onPictureButtonClick = () => {
     const imageSrc = webcamRef.current.getScreenshot();
-    console.log('image', imageSrc)
     setMemberPicture(imageSrc);
     handleClose();
   }
