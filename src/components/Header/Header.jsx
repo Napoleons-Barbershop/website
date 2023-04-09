@@ -72,6 +72,7 @@ const Header = () => {
                                 size="sm"
                                 role="status"
                                 aria-hidden="true"
+                                style={{marginRight: 10}}
                               />
                               Loading...
                             </>
@@ -129,6 +130,7 @@ const Header = () => {
                               size="sm"
                               role="status"
                               aria-hidden="true"
+                              style={{marginRight: 10}}
                             />
                             Loading...
                           </>
