@@ -6,7 +6,6 @@ import { Col, Row, Spinner } from 'react-bootstrap';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { RiCloseFill } from 'react-icons/ri';
 import { slide as Menu } from 'react-burger-menu';
-import { getAuth, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider, OAuthProvider, signInWithRedirect } from "firebase/auth";
 
 import '../../App.css';
 // import useFirebaseConfig from '../../hooks/firebase';

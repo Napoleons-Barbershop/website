@@ -5,7 +5,7 @@ import { MEMBERSHIP_PLANS, SIX_MONTHS_IN_MILLISECONDS, THREE_MONTHS_IN_MILLISECO
 import { AiFillCamera } from 'react-icons/ai'
 import CameraModal from '../CameraModal/CameraModal';
 import firebase from '../../utils/firebase';
-import { ref, set } from "firebase/database";
+import { ref, set, get, child } from "firebase/database";
 import { sanitizeEmail } from '../../utils/utils';
 import { useNavigate } from 'react-router-dom';
 import Alert from 'react-bootstrap/Alert';
@@ -58,9 +58,16 @@ const AdminProfile = () => {
       }
 
       try {
-        await set(ref(database, `users/${sanitizedEmail}`), payload)
-        setAlertVariant('success');
-        // navigate('/');
+        const snapshot = await get(child(ref(database), `users/${sanitizedEmail}`));
+        if(snapshot.exists()) {
+          setAlertVariant('warning');
+        } else {
+          await set(ref(database, `users/${sanitizedEmail}`), payload);
+          setAlertVariant('success');
+          setTimeout(() => {
+            navigate('/');
+          }, 3000);
+        }
       } catch(err) {
         console.error(err);
         setAlertVariant('danger')
@@ -79,6 +86,12 @@ const AdminProfile = () => {
       return (
         <Alert variant="danger" style={{width: '100%'}}>
           Something is wrong when creating a new member
+        </Alert>
+      )
+    } else if(alertVariant === 'warning') {
+      return (
+        <Alert variant="warning" style={{width: '100%'}}>
+          {`User ${email} already exists`}
         </Alert>
       )
     }
