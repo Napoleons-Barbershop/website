@@ -1,23 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DesktopMenuWrapper, MobileMenuWrapper, HeaderLogo, HeaderLogoImage, HeaderMenuList, HeaderNavArea, MenuItemLink, RecruitmentLink, HeaderColumn, MenuToggleInput, RecruitmentLinkMobile, MenuItemLinkMobile, BookingLink, BookingLinkMobile, LoginButton, LoginButtonMobile } from "./Header.styled";
 import { menuItems, RECRUITMENT_LINK, WHATSAPP_LINK } from '../../utils/constants'
 import companyLogo from '../../assets/logo.jpg';
-import { Col, Row, Spinner } from 'react-bootstrap';
+import { Row, Spinner } from 'react-bootstrap';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { RiCloseFill } from 'react-icons/ri';
 import { slide as Menu } from 'react-burger-menu';
 
 import '../../App.css';
-// import useFirebaseConfig from '../../hooks/firebase';
 import useLogin from '../../hooks/useLogin';
 import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
 
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
-  // const {auth} = useFirebaseConfig();
-  const { setOpenLoginModal, user, loginLoading } = useLogin();
+
+  const { setOpenLoginModal, user, loginLoading, setUser } = useLogin();
   const navigate = useNavigate();
+
+  // Trying to load user from local storage
+  useEffect(() => {
+    const user = localStorage.getItem('user');
+    if(user) {
+      const parsedUser = JSON.parse(user);
+      setUser(parsedUser);
+    }
+  }, []);
 
   const handleSidebarOpen = () => {
     setOpenMobileMenu(true);

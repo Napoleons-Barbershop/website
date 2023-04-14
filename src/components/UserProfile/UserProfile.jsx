@@ -26,7 +26,7 @@ const UserProfile = () => {
         if(snapshot.exists()) {
           setUserProfileData(snapshot.val());
         } else {
-          console.error('No data available');
+          console.error('No user available');
           setUserProfileData(null);
         }
       }
@@ -48,15 +48,25 @@ const UserProfile = () => {
     <Container fluid style={{padding: 20, maxWidth: 400}}>
       <Row>
         <Col>
-          <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
-            <ProfileImage src={userProfileData && userProfileData.picture} alt="Placeholder" />
-            <div style={{paddingTop: 50}}>
-              <p>{`Email: ${userProfileData && user?.email}`}</p>
-              <p>{`Membership starts: ${formatDate(userProfileData?.membershipStart)}`}</p>
-              <p>{`Membership ends: ${formatDate(userProfileData?.membershipExpiry)}`}</p>
+          
+            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
+            
+              {
+                !!userProfileData ? 
+                <>
+                  <ProfileImage src={userProfileData && userProfileData.picture} alt="Placeholder" />
+                  <div style={{paddingTop: 50}}>
+                    <p>{`Email: ${userProfileData && user?.email}`}</p>
+                    <p>{`Membership starts: ${formatDate(userProfileData?.membershipStart)}`}</p>
+                    <p>{`Membership ends: ${formatDate(userProfileData?.membershipExpiry)}`}</p>
+                  </div>
+                </> 
+                : <h2 style={{padding: '50px 0px', textAlign: 'center'}}>Not a member yet</h2>
+              }
+              
+              <Button variant="danger" onClick={onSignoutClick}>Sign out</Button>
             </div>
-            <Button variant="danger" onClick={onSignoutClick}>Sign out</Button>
-          </div>
+          
         </Col>
       </Row>
     </Container>
