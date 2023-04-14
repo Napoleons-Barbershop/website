@@ -12,11 +12,11 @@ const Profile = () => {
   const navigate = useNavigate();
   const isAdmin = user?.email === ADMIN_EMAIL
 
-  // useEffect(() => {
-  //   if(!user) {
-  //     navigate('/')
-  //   }
-  // }, [])
+  useEffect(() => {
+    if(!user) {
+      navigate('/')
+    }
+  }, [])
 
   return (
     <>
