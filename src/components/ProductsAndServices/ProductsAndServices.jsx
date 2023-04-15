@@ -3,6 +3,25 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { ProductsAndServicesContainer, ProductsAndServicesContainerTitle, ProductsAndServicesProductWrapper, ProductsAndServicesProductTitle, ProductsAndServicesProductPrice, ProductsAndServicesProductDescription, ProductsAndServices6MonthCol, ProductsAndServicesHairSpaCol, ProductsAndServices3MonthCol, ProductsAndServicesStandardCutCol, ProductsAndServicesShavingRow, ProductsAndServicesFaceMaskRow, ProductsAndServicesHairColouringRow, ProductsAndServicesShavingCol, ProductsAndServicesFaceMaskCol, ProductsAndServicesHairColouringCol } from './ProductsAndServices.styled';
 
+/*
+Gentlemen's Cut 99k
+Experience our complete starter pack for a clean and sleek haircut, just as you expected. 
+Hair Spa 20k
+Guaranteed you'll enjoy this one for a healthy scalp and stress-free head massage.
+Hot-Towel Shave 25k
+The ladies will love your trimmed beard, kings.
+Charcoal Face Mask 30k
+"Charcoal masks work to deep clean your pores, removing excess dirt, oil, and other impurities. They also have some exfoliating properties, so your skin will feel smoother after use." -Google
+Aloe Vera Face Mask 30k
+Ain't just good for your drink but actually more beneficial for your face.
+Korean Perm 300k
+Get all your perming needs right here and now!
+Basic Hair Coloring 200k
+Worth a try for you who's looking for a subtle change!
+Premium Hair Coloring 400k
+Don't worry, people will be in awe after you get this treatment done.
+*/
+
 const ProductsAndServices = () => {
   return (
     <ProductsAndServicesContainer id='Products & Services' fluid>
@@ -10,7 +29,7 @@ const ProductsAndServices = () => {
         <Row>
           <ProductsAndServicesStandardCutCol md={6}>
             <ProductsAndServicesProductWrapper>
-              <ProductsAndServicesProductTitle>Standard Men's Package</ProductsAndServicesProductTitle>
+              <ProductsAndServicesProductTitle>Gentlemen's Cut</ProductsAndServicesProductTitle>
               <ProductsAndServicesProductPrice>99k</ProductsAndServicesProductPrice>
             </ProductsAndServicesProductWrapper>
             <ProductsAndServicesProductDescription>Experience our complete starter pack for a clean and sleek haircut, just as you expected.</ProductsAndServicesProductDescription>
@@ -43,7 +62,7 @@ const ProductsAndServices = () => {
           <ProductsAndServicesShavingRow>
             <ProductsAndServicesShavingCol md={6}>
               <ProductsAndServicesProductWrapper>
-                <ProductsAndServicesProductTitle>Shaving</ProductsAndServicesProductTitle>
+                <ProductsAndServicesProductTitle>Hot-Towel Shave</ProductsAndServicesProductTitle>
                 <ProductsAndServicesProductPrice>25k</ProductsAndServicesProductPrice>
               </ProductsAndServicesProductWrapper>
               <ProductsAndServicesProductDescription>The ladies will love your trimmed beard, kings.</ProductsAndServicesProductDescription>
@@ -59,6 +78,26 @@ const ProductsAndServices = () => {
               <ProductsAndServicesProductDescription>"Charcoal masks work to deep clean your pores, removing excess dirt, oil, and other impurities. They also have some exfoliating properties, so your skin will feel smoother after use." -Google</ProductsAndServicesProductDescription>
             </ProductsAndServicesFaceMaskCol>
           </ProductsAndServicesFaceMaskRow>
+
+          <ProductsAndServicesFaceMaskRow>
+            <ProductsAndServicesFaceMaskCol md={6}>
+              <ProductsAndServicesProductWrapper>
+                <ProductsAndServicesProductTitle>Aloe Vera Face Mask</ProductsAndServicesProductTitle>
+                <ProductsAndServicesProductPrice>30k</ProductsAndServicesProductPrice>
+              </ProductsAndServicesProductWrapper>
+              <ProductsAndServicesProductDescription>Ain't just good for your drink but actually more beneficial for your face.</ProductsAndServicesProductDescription>
+            </ProductsAndServicesFaceMaskCol>
+          </ProductsAndServicesFaceMaskRow>
+
+          <ProductsAndServicesFaceMaskRow>
+            <ProductsAndServicesFaceMaskCol md={6}>
+              <ProductsAndServicesProductWrapper>
+                <ProductsAndServicesProductTitle>Korean Perm</ProductsAndServicesProductTitle>
+                <ProductsAndServicesProductPrice>300k</ProductsAndServicesProductPrice>
+              </ProductsAndServicesProductWrapper>
+              <ProductsAndServicesProductDescription>Get all your perming needs right here and now!</ProductsAndServicesProductDescription>
+            </ProductsAndServicesFaceMaskCol>
+          </ProductsAndServicesFaceMaskRow>
           
           <ProductsAndServicesHairColouringRow>
             <ProductsAndServicesHairColouringCol md={6}>
@@ -66,7 +105,17 @@ const ProductsAndServices = () => {
                 <ProductsAndServicesProductTitle>Basic Hair Coloring</ProductsAndServicesProductTitle>
                 <ProductsAndServicesProductPrice>200k</ProductsAndServicesProductPrice>
               </ProductsAndServicesProductWrapper>
-              <ProductsAndServicesProductDescription>YOLO, right?</ProductsAndServicesProductDescription>
+              <ProductsAndServicesProductDescription>Worth a try for you who's looking for a subtle change!</ProductsAndServicesProductDescription>
+            </ProductsAndServicesHairColouringCol>
+          </ProductsAndServicesHairColouringRow>
+
+          <ProductsAndServicesHairColouringRow>
+            <ProductsAndServicesHairColouringCol md={6}>
+              <ProductsAndServicesProductWrapper>
+                <ProductsAndServicesProductTitle>Premium Hair Coloring</ProductsAndServicesProductTitle>
+                <ProductsAndServicesProductPrice>400k</ProductsAndServicesProductPrice>
+              </ProductsAndServicesProductWrapper>
+              <ProductsAndServicesProductDescription>Don't worry, people will be in awe after you get this treatment done.</ProductsAndServicesProductDescription>
             </ProductsAndServicesHairColouringCol>
           </ProductsAndServicesHairColouringRow>
         </Row>
