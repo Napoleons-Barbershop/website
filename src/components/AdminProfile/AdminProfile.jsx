@@ -100,7 +100,7 @@ const AdminProfile = () => {
   const onSignoutClick = () => {
     setUser(null);
     signOut(auth).then(() => {
-      localStorage.removeItem('user');
+      // localStorage.removeItem('user');
       navigate('/')
     }).catch(() => {
       console.error('Trouble signing out')

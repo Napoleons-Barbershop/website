@@ -125,12 +125,12 @@ const LoginModal = () => {
 
         const { stsTokenManager, displayName, email } = user;
         // TODO: save and load using local storage
-        localStorage.setItem('user', JSON.stringify({
-          accessToken: stsTokenManager.accessToken,
-          refreshToken: stsTokenManager.refreshToken,
-          displayName,
-          email
-        }))
+        // localStorage.setItem('user', JSON.stringify({
+        //   accessToken: stsTokenManager.accessToken,
+        //   refreshToken: stsTokenManager.refreshToken,
+        //   displayName,
+        //   email
+        // }))
       }
     })
   }, [])
