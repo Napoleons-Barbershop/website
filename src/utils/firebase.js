@@ -12,7 +12,7 @@ const initializeFirebaseConfig = () => {
   const firebaseConfig = {
     apiKey: "AIzaSyCs9qg25g0Zjwdwg4cBMUMc6w1HDVhd5mY",
     // authDomain: "napoleons-barbershop.firebaseapp.com",
-    authDomain: "napoleonsbarbershop.com",
+    authDomain: "napoleons-barbershop.firebaseapp.com",
     projectId: "napoleons-barbershop",
     storageBucket: "napoleons-barbershop.appspot.com",
     messagingSenderId: "76631314763",
