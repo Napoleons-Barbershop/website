@@ -11,7 +11,8 @@ const initializeFirebaseConfig = () => {
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   const firebaseConfig = {
     apiKey: "AIzaSyCs9qg25g0Zjwdwg4cBMUMc6w1HDVhd5mY",
-    authDomain: "napoleons-barbershop.firebaseapp.com",
+    // authDomain: "napoleons-barbershop.firebaseapp.com",
+    authDomain: "napoleonsbarbershop.com",
     projectId: "napoleons-barbershop",
     storageBucket: "napoleons-barbershop.appspot.com",
     messagingSenderId: "76631314763",
