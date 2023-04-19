@@ -79,6 +79,7 @@ const LoginModal = () => {
     setLoginLoading(true);
     const userCred = await signInWithPopup(auth, provider);
     setLoginLoading(false);
+    handleClose();
     if(userCred?.user) {
       const { user } = userCred;
       setUser(user);
@@ -92,13 +93,13 @@ const LoginModal = () => {
       //   email
       // }))
     }
-    handleClose();
   }
 
   const onYahooSignIn = async () => {
     const provider = new OAuthProvider('yahoo.com');
     const userCred = await signInWithPopup(auth, provider);
     setLoginLoading(false);
+    handleClose();
     if(userCred?.user) {
       const { user } = userCred;
       setUser(user);
@@ -112,13 +113,13 @@ const LoginModal = () => {
       //   email
       // }))
     }
-    handleClose();
   }
 
   const onMicrosoftSignIn = async () => {
     const provider = new OAuthProvider('microsoft.com');
     const userCred = await signInWithPopup(auth, provider);
     setLoginLoading(false);
+    handleClose();
     if(userCred?.user) {
       const { user } = userCred;
       setUser(user);
@@ -132,7 +133,6 @@ const LoginModal = () => {
       //   email
       // }))
     }
-    handleClose();
   }
 
   // useEffect(() => {
