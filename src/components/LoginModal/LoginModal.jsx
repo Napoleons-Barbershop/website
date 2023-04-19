@@ -75,65 +75,85 @@ const LoginModal = () => {
 
   const onGoogleSignIn = async () => {
     const provider = new GoogleAuthProvider();
-    signInWithRedirect(auth, provider);
-  }
-
-  const onYahooSignIn = () => {
-    const provider = new OAuthProvider('yahoo.com');
-    signInWithRedirect(auth, provider);
-    // signInWithPopup(auth, provider)
-    // .then((result) => {
-    //   // IdP data available in result.additionalUserInfo.profile
-    //   // ...
-    //   console.log('abcabc', result)
-    //   // Yahoo OAuth access token and ID token can be retrieved by calling:
-    //   const credential = OAuthProvider.credentialFromResult(result);
-    //   const accessToken = credential.accessToken;
-    //   const idToken = credential.idToken;
-    // })
-    // .catch((error) => {
-    //   // Handle error.
-    // });
-  }
-
-  const onMicrosoftSignIn = () => {
-    const provider = new OAuthProvider('microsoft.com');
-    signInWithRedirect(auth, provider);
-    // const auth = getAuth();
-    // signInWithPopup(auth, provider)
-    // .then((result) => {
-    //   // User is signed in.
-    //   // IdP data available in result.additionalUserInfo.profile.
-    //   console.log('abcabc', result)
-    //   // Get the OAuth access token and ID Token
-    //   const credential = OAuthProvider.credentialFromResult(result);
-    //   const accessToken = credential.accessToken;
-    //   const idToken = credential.idToken;
-    // })
-    // .catch((error) => {
-    //   // Handle error.
-    // });
-  }
-
-  useEffect(() => {
+    // signInWithRedirect(auth, provider);
     setLoginLoading(true);
-    getRedirectResult(auth).then((result) => {
-      setLoginLoading(false);
-      if(result?.user) {
-        const { user } = result;
-        setUser(user);
+    const userCred = await signInWithPopup(auth, provider);
+    setLoginLoading(false);
+    if(userCred?.user) {
+      const { user } = userCred;
+      setUser(user);
 
-        const { stsTokenManager, displayName, email } = user;
-        // TODO: save and load using local storage
-        // localStorage.setItem('user', JSON.stringify({
-        //   accessToken: stsTokenManager.accessToken,
-        //   refreshToken: stsTokenManager.refreshToken,
-        //   displayName,
-        //   email
-        // }))
-      }
-    })
-  }, [])
+      const { stsTokenManager, displayName, email } = user;
+      // TODO: save and load using local storage
+      // localStorage.setItem('user', JSON.stringify({
+      //   accessToken: stsTokenManager.accessToken,
+      //   refreshToken: stsTokenManager.refreshToken,
+      //   displayName,
+      //   email
+      // }))
+    }
+    handleClose();
+  }
+
+  const onYahooSignIn = async () => {
+    const provider = new OAuthProvider('yahoo.com');
+    const userCred = await signInWithPopup(auth, provider);
+    setLoginLoading(false);
+    if(userCred?.user) {
+      const { user } = userCred;
+      setUser(user);
+
+      const { stsTokenManager, displayName, email } = user;
+      // TODO: save and load using local storage
+      // localStorage.setItem('user', JSON.stringify({
+      //   accessToken: stsTokenManager.accessToken,
+      //   refreshToken: stsTokenManager.refreshToken,
+      //   displayName,
+      //   email
+      // }))
+    }
+    handleClose();
+  }
+
+  const onMicrosoftSignIn = async () => {
+    const provider = new OAuthProvider('microsoft.com');
+    const userCred = await signInWithPopup(auth, provider);
+    setLoginLoading(false);
+    if(userCred?.user) {
+      const { user } = userCred;
+      setUser(user);
+
+      const { stsTokenManager, displayName, email } = user;
+      // TODO: save and load using local storage
+      // localStorage.setItem('user', JSON.stringify({
+      //   accessToken: stsTokenManager.accessToken,
+      //   refreshToken: stsTokenManager.refreshToken,
+      //   displayName,
+      //   email
+      // }))
+    }
+    handleClose();
+  }
+
+  // useEffect(() => {
+  //   setLoginLoading(true);
+  //   getRedirectResult(auth).then((result) => {
+  //     setLoginLoading(false);
+  //     if(result?.user) {
+  //       const { user } = result;
+  //       setUser(user);
+
+  //       const { stsTokenManager, displayName, email } = user;
+  //       // TODO: save and load using local storage
+  //       // localStorage.setItem('user', JSON.stringify({
+  //       //   accessToken: stsTokenManager.accessToken,
+  //       //   refreshToken: stsTokenManager.refreshToken,
+  //       //   displayName,
+  //       //   email
+  //       // }))
+  //     }
+  //   })
+  // }, [])
 
   return (
     <>
