@@ -5,7 +5,6 @@ import { LoginContext } from '../contexts/loginContext'
 const useLogin = () => {
   const context = useContext(LoginContext)
 
-  // This is to prevent and give an error whenever it is being accessed out of the TasksProvider
   if (context === undefined) {
     throw new Error('useLogin must be used within a LoginProvider')
   }

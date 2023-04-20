@@ -6,7 +6,6 @@ import ContactUs from '../../components/ContactUs/ContactUs';
 import WhatsappFloatingButton from '../../components/WhatsappFloatingButton/WhatsappFloatingButton';
 import AboutUs from '../../components/AboutUs/AboutUs';
 import Charity from '../../components/Charity/Charity';
-// import LoginProvider from '../../contexts/loginProvider';
 import LoginModal from '../../components/LoginModal/LoginModal';
 
 

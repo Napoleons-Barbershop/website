@@ -1,80 +1,20 @@
 import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
 import useLogin from '../../hooks/useLogin';
-import { PASSWORD_REGEX } from '../../utils/constants';
-import useFirebaseConfig from '../../hooks/firebase';
 import { GoogleLoginButton, YahooLoginButton, MicrosoftLoginButton } from "react-social-login-buttons";
-import { getAuth, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider, OAuthProvider, signInWithRedirect, getRedirectResult, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithPopup, GoogleAuthProvider, OAuthProvider, } from "firebase/auth";
 import firebase from '../../utils/firebase';
 
 const LoginModal = () => {
-  const { setOpenLoginModal, openLoginModal, user, setUser, setLoginLoading } = useLogin();
-  // const { auth } = useFirebaseConfig();
-  // const [show, setShow] = useState(false);
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
-  const [rePassword, setRePassword] = useState(null);
-  const [mode, setMode] = useState('login');
-  const [validated, setValidated] = useState(false);
+  const { setOpenLoginModal, openLoginModal, setUser, setLoginLoading } = useLogin();
   const { auth } = firebase();
 
   const handleClose = () => {
     setOpenLoginModal(false);
-    setMode('login')
   }
-
-  const onLogin = () => {
-    // const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
-      });
-  }
-
-  const onSignUp = () => {
-    // const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      });
-  }
-
-  // to switch between login/sign up
-  const onToggleLogin = () => {
-    if(mode === 'login') {
-      setMode('sign-up');
-    } else {
-      setMode('login');
-    }
-  }
-
-  const handleSubmit = (event) => {
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-
-    setValidated(true);
-  };
 
   const onGoogleSignIn = async () => {
     const provider = new GoogleAuthProvider();
-    // signInWithRedirect(auth, provider);
     setLoginLoading(true);
     const userCred = await signInWithPopup(auth, provider);
     setLoginLoading(false);
@@ -131,26 +71,6 @@ const LoginModal = () => {
     }
   }
 
-  // useEffect(() => {
-  //   setLoginLoading(true);
-  //   getRedirectResult(auth).then((result) => {
-  //     setLoginLoading(false);
-  //     if(result?.user) {
-  //       const { user } = result;
-  //       setUser(user);
-
-  //       const { stsTokenManager, displayName, email } = user;
-  //       // TODO: save and load using local storage
-  //       // localStorage.setItem('user', JSON.stringify({
-  //       //   accessToken: stsTokenManager.accessToken,
-  //       //   refreshToken: stsTokenManager.refreshToken,
-  //       //   displayName,
-  //       //   email
-  //       // }))
-  //     }
-  //   })
-  // }, [])
-
   return (
     <>
       <Modal
@@ -163,7 +83,6 @@ const LoginModal = () => {
         <Modal.Header closeButton>
           <Modal.Title>Login</Modal.Title>
         </Modal.Header>
-        {/* <Form noValidate validated={validated} onSubmit={handleSubmit}> */}
           <Modal.Body>
             <GoogleLoginButton
               onClick={onGoogleSignIn}
@@ -206,47 +125,8 @@ const LoginModal = () => {
                 fontSize: 16
               }} 
               text='Continue with Microsoft'
-            />
-            {/* <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control required type="email" placeholder="Enter email" value={email} onChange={(e) => setEmail(e.target.value)} />
-              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control pattern={PASSWORD_REGEX} required type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-              {(password !== rePassword) && (!!rePassword) && <Form.Control.Feedback type="invalid">
-                Password does not match
-              </Form.Control.Feedback>}
-            </Form.Group>
-
-            {mode === 'sign-up' && <Form.Group className="mb-3" controlId="formBasicRePassword">
-              <Form.Label>Re-enter Password</Form.Label>
-              <Form.Control required type="password" placeholder="Re-enter Password" value={rePassword} onChange={(e) => setRePassword(e.target.value)} />
-              {(password !== rePassword) && (!!rePassword) && <Form.Control.Feedback type="invalid">
-                Password does not match
-              </Form.Control.Feedback>}
-            </Form.Group>}
-            
-            {mode === 'login' && <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
-              <span style={{fontSize: '0.75rem', paddingBottom: 10}}>Or alternatively,</span>
-              <Button variant="primary" onClick={onToggleLogin}>
-                {mode === 'login' ? 'Sign up' : 'Login'}
-              </Button>
-            </div>} */}
-            
+            />            
           </Modal.Body>
-          {/* <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button>
-            <Button variant="primary" type="submit">
-              {mode === 'login' ? 'Login' : 'Create Account'}
-            </Button>
-          </Modal.Footer> */}
-        {/* </Form> */}
       </Modal>
     </>
   );
