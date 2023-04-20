@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Col, Container, Row, Form, Dropdown, Button } from 'react-bootstrap';
 import { NAPOLEON_BROWN_COLOR } from '../../utils/colors';
-import { MEMBERSHIP_PLANS, SIX_MONTHS_IN_MILLISECONDS, THREE_MONTHS_IN_MILLISECONDS } from '../../utils/constants';
+import { MEMBERSHIP_PLANS  } from '../../utils/constants';
 import { AiFillCamera } from 'react-icons/ai'
 import CameraModal from '../CameraModal/CameraModal';
 import firebase from '../../utils/firebase';
@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import Alert from 'react-bootstrap/Alert';
 import { signOut } from "firebase/auth";
 import useLogin from '../../hooks/useLogin';
+import { addMonths } from 'date-fns'
 
 const AdminProfile = () => {
 
@@ -46,33 +47,41 @@ const AdminProfile = () => {
       let membershipExpiry;
 
       if(selectedMembershipOption == '6') {
-        membershipExpiry = membershipStart + SIX_MONTHS_IN_MILLISECONDS;
+        membershipExpiry = addMonths(new Date(membershipStart), 6);
       } else if (selectedMembershipOption == '3') {
-        membershipExpiry = membershipStart + THREE_MONTHS_IN_MILLISECONDS;
+        membershipExpiry = addMonths(new Date(membershipStart), 3);
       }
 
       const payload = {
         picture: memberPicture,
         membershipStart,
-        membershipExpiry
+        membershipExpiry: membershipExpiry.getTime()
       }
 
       try {
         const snapshot = await get(child(ref(database), `users/${sanitizedEmail}`));
         if(snapshot.exists()) {
-          setAlertVariant('warning');
+          showAlert('warning');
         } else {
+          setAlertVariant(null);
           await set(ref(database, `users/${sanitizedEmail}`), payload);
-          setAlertVariant('success');
+          showAlert('success');
           setTimeout(() => {
             navigate('/');
           }, 3000);
         }
       } catch(err) {
         console.error(err);
-        setAlertVariant('danger')
+        showAlert('danger')
       }
     }
+  }
+
+  const showAlert = (variant) => {
+    setAlertVariant(variant);
+    setTimeout(() => {
+      setAlertVariant(null);
+    }, 3000)
   }
 
   const renderAlert = () => {
@@ -100,7 +109,7 @@ const AdminProfile = () => {
   const onSignoutClick = () => {
     setUser(null);
     signOut(auth).then(() => {
-      // localStorage.removeItem('user');
+      localStorage.removeItem('user');
       navigate('/')
     }).catch(() => {
       console.error('Trouble signing out')

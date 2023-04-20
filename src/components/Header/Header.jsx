@@ -19,13 +19,13 @@ const Header = () => {
   const navigate = useNavigate();
 
   // Trying to load user from local storage
-  // useEffect(() => {
-  //   const user = localStorage.getItem('user');
-  //   if(user) {
-  //     const parsedUser = JSON.parse(user);
-  //     setUser(parsedUser);
-  //   }
-  // }, []);
+  useEffect(() => {
+    const user = localStorage.getItem('user');
+    if(user) {
+      const parsedUser = JSON.parse(user);
+      setUser(parsedUser);
+    }
+  }, []);
 
   const handleSidebarOpen = () => {
     setOpenMobileMenu(true);

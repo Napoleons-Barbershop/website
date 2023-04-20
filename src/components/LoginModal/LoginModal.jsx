@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import Button from 'react-bootstrap/Button';
+import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import useLogin from '../../hooks/useLogin';
@@ -85,13 +84,12 @@ const LoginModal = () => {
       setUser(user);
 
       const { stsTokenManager, displayName, email } = user;
-      // TODO: save and load using local storage
-      // localStorage.setItem('user', JSON.stringify({
-      //   accessToken: stsTokenManager.accessToken,
-      //   refreshToken: stsTokenManager.refreshToken,
-      //   displayName,
-      //   email
-      // }))
+      localStorage.setItem('user', JSON.stringify({
+        accessToken: stsTokenManager.accessToken,
+        refreshToken: stsTokenManager.refreshToken,
+        displayName,
+        email
+      }))
     }
   }
 
@@ -105,13 +103,12 @@ const LoginModal = () => {
       setUser(user);
 
       const { stsTokenManager, displayName, email } = user;
-      // TODO: save and load using local storage
-      // localStorage.setItem('user', JSON.stringify({
-      //   accessToken: stsTokenManager.accessToken,
-      //   refreshToken: stsTokenManager.refreshToken,
-      //   displayName,
-      //   email
-      // }))
+      localStorage.setItem('user', JSON.stringify({
+        accessToken: stsTokenManager.accessToken,
+        refreshToken: stsTokenManager.refreshToken,
+        displayName,
+        email
+      }))
     }
   }
 
@@ -125,13 +122,12 @@ const LoginModal = () => {
       setUser(user);
 
       const { stsTokenManager, displayName, email } = user;
-      // TODO: save and load using local storage
-      // localStorage.setItem('user', JSON.stringify({
-      //   accessToken: stsTokenManager.accessToken,
-      //   refreshToken: stsTokenManager.refreshToken,
-      //   displayName,
-      //   email
-      // }))
+      localStorage.setItem('user', JSON.stringify({
+        accessToken: stsTokenManager.accessToken,
+        refreshToken: stsTokenManager.refreshToken,
+        displayName,
+        email
+      }))
     }
   }
 
