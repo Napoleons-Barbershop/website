@@ -15,24 +15,24 @@ const Charity = () => {
     <div id="Social Awareness" style={{padding: '100px 50px 75px 50px', backgroundColor: NAPOLEON_BROWN_COLOR, color: WHITE}}>
       <h3 style={{textAlign: 'center', fontSize: '1.8rem'}}>Social Awareness</h3>
       <p style={{textAlign: 'center', fontStyle: 'italic', marginBottom: 0}}>Coming soon</p>
-      {/* <Carousel responsive={CAROUSEL_RESPONSIVE_SIZES_CHARITY} draggable swipeable infinite autoPlay autoPlaySpeed={4000} transitionDuration={500} removeArrowOnDeviceType={["tablet", "mobile"]}> */}
-        {/* <div style={{height: 'inherit', padding: '20px 0px 20px 20px', display: 'flex', flexDirection: 'column'}}>
+      {/* <Carousel responsive={CAROUSEL_RESPONSIVE_SIZES_CHARITY} draggable swipeable infinite autoPlay autoPlaySpeed={4000} transitionDuration={500} removeArrowOnDeviceType={["tablet", "mobile"]}>
+        <div style={{height: 'inherit', padding: '20px 0px 20px 20px', display: 'flex', flexDirection: 'column'}}>
           <img loading='lazy' src={FirstImage} alt="Carousel Image" style={{height: 300, width: '100%', objectFit: 'cover'}} />
           <caption style={{color: NAPOELON_CAPTION_BROWN_COLOR}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</caption>
         </div>
         <div style={{height: 'inherit', padding: '20px 0px 20px 20px', display: 'flex', flexDirection: 'column'}}>
           <img loading='lazy' src={SecondImage} alt="Carousel Image" style={{height: 300, width: '100%', objectFit: 'cover'}} />
           <caption style={{color: NAPOELON_CAPTION_BROWN_COLOR}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</caption>
-        </div> */}
-        {/* <div style={{height: 'inherit', padding: '20px 0px 20px 20px', display: 'flex', flexDirection: 'column'}}>
+        </div>
+        <div style={{height: 'inherit', padding: '20px 0px 20px 20px', display: 'flex', flexDirection: 'column'}}>
           <img loading='lazy' src={ThirdImage} alt="Carousel Image" style={{height: 300, width: '100%', objectFit: 'cover'}} />
           <caption style={{color: NAPOELON_CAPTION_BROWN_COLOR}}>Lorem ipsum dolor sit amet</caption>
-        </div> */}
-        {/* <div style={{height: 'inherit', padding: '20px 0px 20px 20px', display: 'flex', flexDirection: 'column'}}>
+        </div>
+        <div style={{height: 'inherit', padding: '20px 0px 20px 20px', display: 'flex', flexDirection: 'column'}}>
           <img loading='lazy' src={FourthImage} alt="Carousel Image" style={{height: 300, width: '100%', objectFit: 'cover'}} />
           <caption style={{color: NAPOELON_CAPTION_BROWN_COLOR}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident</caption>
-        </div> */}
-      {/* </Carousel> */}
+        </div>
+      </Carousel> */}
     </div>
   )
 }
