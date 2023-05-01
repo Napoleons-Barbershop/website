@@ -24,6 +24,12 @@ export const sanitizeEmail = (email) => {
   }
 }
 
+export const resanitizeEmail = (email) => {
+  if(email) {
+    return email.replace('dot', '.').replace('hashtag', '#').replace('dollar', '$').replace('left-square-bracket', '[').replace('right-square-bracket', ']')
+  }
+}
+
 export const formatDate = (dateInMs) => {
   if(dateInMs) {
     return new Date(parseInt(dateInMs)).toLocaleDateString('id');

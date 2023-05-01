@@ -7,7 +7,7 @@ import useLogin from '../../hooks/useLogin';
 import { useNavigate } from 'react-router-dom';
 import { ref, get, child, set } from "firebase/database";
 import { useEffect } from 'react';
-import { formatDate, sanitizeEmail } from '../../utils/utils';
+import { formatDate, resanitizeEmail, sanitizeEmail } from '../../utils/utils';
 import { useState } from 'react';
 
 const UserProfile = () => {
@@ -57,7 +57,7 @@ const UserProfile = () => {
           <>
             <ProfileImage src={userProfileData && userProfileData.picture} alt="Placeholder" />
             <div style={{paddingTop: 50}}>
-              <p>{`Email: ${userProfileData && user?.email}`}</p>
+              <p>{`Email: ${userProfileData && resanitizeEmail(user?.email)}`}</p>
               <p>{`Membership starts: ${formatDate(userProfileData?.membershipStart)}`}</p>
               <p>{`Membership ends: ${formatDate(userProfileData?.membershipExpiry)}`}</p>
             </div>

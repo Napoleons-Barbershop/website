@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Col, Container, Row, Form, Dropdown, Button } from 'react-bootstrap';
-import { NAPOLEON_BROWN_COLOR } from '../../utils/colors';
-import { MEMBERSHIP_PLANS  } from '../../utils/constants';
+import { NAPOLEON_BG, NAPOLEON_BROWN_COLOR, WHITE } from '../../utils/colors';
+import { ADMIN_EMAIL, MEMBERSHIP_PLANS  } from '../../utils/constants';
 import { AiFillCamera } from 'react-icons/ai'
 import CameraModal from '../CameraModal/CameraModal';
 import firebase from '../../utils/firebase';
@@ -12,12 +12,15 @@ import Alert from 'react-bootstrap/Alert';
 import { signOut } from "firebase/auth";
 import useLogin from '../../hooks/useLogin';
 import { addMonths } from 'date-fns'
+import { useEffect } from 'react';
+import { MdArrowBack } from 'react-icons/md'
 
 const AdminProfile = () => {
 
   const { auth, database } = firebase();
   const navigate = useNavigate();
-  const { setUser } = useLogin();
+  const { setUser, user } = useLogin();
+  const isAdmin = user?.email === ADMIN_EMAIL
 
   const [selectedMembershipOption, setSelectedMembershipOption] = useState('3');
   const [pictureMode, setPictureMode] = useState(false);
@@ -116,8 +119,29 @@ const AdminProfile = () => {
     })
   }
 
+  const onAdminDashboardClick = () => {
+    navigate('/admin-dashboard');
+  }
+
+  useEffect(() => {
+    console.log('abcabc', isAdmin)
+    if(!user || !isAdmin) {
+      navigate('/')
+    }
+  }, [])
+
+  const onBackPressed = () => {
+    navigate(-1);
+  }
+
   return (
-    <Container fluid style={{padding: 20, maxWidth: 400}}>
+    <div>
+      <header style={{backgroundColor: NAPOLEON_BG}}>
+        <nav style={{padding: 20, paddingLeft: 20}}>
+          <MdArrowBack onClick={onBackPressed} size={35} style={{color: WHITE , cursor: 'pointer'}} />
+        </nav>
+      </header>
+      <Container fluid style={{padding: 20, maxWidth: 400}}>
       <Row>
         <Col>
           <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
@@ -156,6 +180,7 @@ const AdminProfile = () => {
                   })}
                 </Dropdown.Menu>
               </Dropdown>
+              <Button onClick={onAdminDashboardClick} style={{width: '100%', marginBottom: 10, color: '#fff'}} variant="secondary">Admin Dashboard</Button>
               <Button style={{width: '100%', marginBottom: 10}} variant="success" type="submit">
                 Submit
               </Button>
@@ -165,6 +190,7 @@ const AdminProfile = () => {
         </Col>
       </Row>
     </Container>
+    </div>
   )
 }
 
