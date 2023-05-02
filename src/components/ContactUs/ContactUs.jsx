@@ -1,7 +1,6 @@
 import React from 'react';
 import Row from 'react-bootstrap/Row';
-import { BLACK, MAIN_COLOR, NAPOLEON_BROWN_COLOR, NAPOLEON_BG, NAPOLEON_TEXT_COLOR, WHITE, MAROON } from '../../utils/colors';
-import {MdLocationOn} from 'react-icons/md';
+import { NAPOLEON_BROWN_COLOR} from '../../utils/colors';
 import {AiFillPhone, AiTwotoneMail, AiFillInstagram, AiFillTwitterCircle} from 'react-icons/ai';
 import {FaTiktok} from 'react-icons/fa';
 import { BARBERSHOP_EMAIL, BARBERSHOP_MOBILE_NO, MAPS_LINK, BARBERSHOP_INSTAGRAM, BARBERSHOP_TIKTOK, BARBERSHOP_TWITTER } from '../../utils/constants';

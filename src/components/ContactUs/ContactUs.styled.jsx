@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {Container, Row, Col} from 'react-bootstrap';
+import {Container, Col} from 'react-bootstrap';
 import { BLACK, WHITE } from '../../utils/colors';
 
 export const ContactUsContainer = styled(Container)`

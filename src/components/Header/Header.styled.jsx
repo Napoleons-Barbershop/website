@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {HashLink} from 'react-router-hash-link'
-import { BLACK, DARK_GREEN, HEADER_BG_COLOR, HOVER_ITEM_COLOR, MAIN_COLOR, MAROON, NAPOLEON_BG, NAPOLEON_BROWN_COLOR, NAPOLEON_COMPLEMENT_COLOR, NAPOLEON_COMPLEMENT_HOVER_COLOR, WHITE } from '../../utils/colors';
+import { BLACK, HOVER_ITEM_COLOR, NAPOLEON_BG, NAPOLEON_BROWN_COLOR, NAPOLEON_COMPLEMENT_COLOR, NAPOLEON_COMPLEMENT_HOVER_COLOR, WHITE } from '../../utils/colors';
 import { Col, Container, Button } from 'react-bootstrap';
 
 export const HeaderNavArea = styled(Container)`

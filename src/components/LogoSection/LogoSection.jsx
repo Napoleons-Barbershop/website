@@ -4,10 +4,10 @@ import FirstImage from '../../assets/logo.jpg';
 import SecondImage from '../../assets/about-us-image-2.jpg';
 import ThirdImage from '../../assets/about-us-image-3.jpg';
 import FourthImage from '../../assets/about-us-image-1.jpg';
-
-import 'react-multi-carousel/lib/styles.css';
 import { CAROUSEL_RESPONSIVE_SIZES_LOGO } from '../../utils/constants';
 import { CarouselImage } from './LogoSection.styled';
+
+import 'react-multi-carousel/lib/styles.css';
 
 const LogoSection = () => {
   return (

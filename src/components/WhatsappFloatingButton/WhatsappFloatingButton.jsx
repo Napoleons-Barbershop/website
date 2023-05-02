@@ -1,5 +1,4 @@
 import React from 'react';
-import {RiWhatsappFill} from 'react-icons/ri';
 import WhatsappIcon from '../../assets/whatsapp-icon.png';
 import { WHATSAPP_LINK } from '../../utils/constants';
 

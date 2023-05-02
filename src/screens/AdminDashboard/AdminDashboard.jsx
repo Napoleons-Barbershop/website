@@ -9,11 +9,11 @@ import { differenceInMonths, addMonths } from 'date-fns';
 import { formatDate, resanitizeEmail } from '../../utils/utils';
 import useAdminDashboard from '../../hooks/useAdminDashboard';
 import { MdArrowBack } from 'react-icons/md'
+import { NAPOLEON_BG, WHITE } from '../../utils/colors';
+import { useNavigate } from 'react-router-dom';
 
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
-import { NAPOLEON_BG, WHITE } from '../../utils/colors';
-import { useNavigate } from 'react-router-dom';
 
 const Add3Months = ({ data }) => {
   const { database } = firebase();
@@ -138,7 +138,6 @@ const ActiveInactiveBadge = ({ data }) => {
 }
 
 const AdminDashboard = () => {
-  // const [usersData, setUsersData] = useState([]);
   const [columnDefs] = useState([
     {field: 'sanitizedEmail', sortable: true, headerName: 'Email', filter: true},
     {field: 'Plan Status', cellRenderer: ActiveInactiveBadge},

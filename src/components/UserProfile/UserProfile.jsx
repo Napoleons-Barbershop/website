@@ -5,7 +5,7 @@ import firebase from '../../utils/firebase';
 import { signOut } from "firebase/auth";
 import useLogin from '../../hooks/useLogin';
 import { useNavigate } from 'react-router-dom';
-import { ref, get, child, set } from "firebase/database";
+import { ref, get, child } from "firebase/database";
 import { useEffect } from 'react';
 import { formatDate, resanitizeEmail, sanitizeEmail } from '../../utils/utils';
 import { useState } from 'react';

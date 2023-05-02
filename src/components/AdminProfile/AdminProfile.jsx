@@ -124,7 +124,6 @@ const AdminProfile = () => {
   }
 
   useEffect(() => {
-    console.log('abcabc', isAdmin)
     if(!user || !isAdmin) {
       navigate('/')
     }

@@ -1,7 +1,7 @@
-import React, { startTransition } from 'react';
+import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import LocationMapImage from '../../assets/location-map.png';
-import { DARK_GREEN, MAIN_COLOR, MAROON } from '../../utils/colors';
+import { MAROON } from '../../utils/colors';
 import { MAPS_LINK } from '../../utils/constants';
 import { LocationAddress, LocationImage } from './Location.styled';
 

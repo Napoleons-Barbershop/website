@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Offcanvas, Spinner, Alert } from 'react-bootstrap';
 import Webcam from "react-webcam";
-import { NAPOLEON_BROWN_COLOR } from '../../utils/colors';
 import { CirclePictureButton, PictureButton, RingPictureButton } from './CameraModal.styled';
 
 
