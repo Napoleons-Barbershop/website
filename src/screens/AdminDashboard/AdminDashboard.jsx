@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import { Col, Container, Row, Button, Spinner, Badge } from 'react-bootstrap';
 import { useEffect } from 'react';
@@ -17,7 +17,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Add3Months = ({ data }) => {
   const { database } = firebase();
-  const { setApiLoading } = useAdminDashboard();
+  const { setUpdateData } = useAdminDashboard();
 
   const onButtonClicked = async () => {
     if(window.confirm('Are you sure?')) {
@@ -31,9 +31,8 @@ const Add3Months = ({ data }) => {
         membershipExpiry: newMembershipExpiry.getTime(),
         picture: data?.picture
       }
-      setApiLoading(true);
-      await update(ref(database), updates)
-      setApiLoading(false);
+      await update(ref(database), updates);
+      setUpdateData(true);
     }
   }
 
@@ -43,7 +42,7 @@ const Add3Months = ({ data }) => {
 }
 const Add6Months = ({ data }) => {
   const { database } = firebase();
-  const { setApiLoading } = useAdminDashboard();
+  const { setUpdateData } = useAdminDashboard();
 
   const onButtonClicked = async () => {
     if(window.confirm('Are you sure?')) {
@@ -57,9 +56,8 @@ const Add6Months = ({ data }) => {
         membershipExpiry: newMembershipExpiry.getTime(),
         picture: data?.picture
       }
-      setApiLoading(true);
       await update(ref(database), updates)
-      setApiLoading(false);
+      setUpdateData(true);
     }
   }
 
@@ -70,12 +68,12 @@ const Add6Months = ({ data }) => {
 
 const SwitchTo6Months = ({ data }) => {
   const { database } = firebase();
-  const { setApiLoading } = useAdminDashboard();
+  const { setUpdateData } = useAdminDashboard();
 
   const onButtonClicked = async () => {
     if(window.confirm('Are you sure?')) {
       const email = data?.email;
-      const newMembershipExpiry = addMonths(new Date(data?.membershipExpiryMs), 6);
+      const newMembershipExpiry = addMonths(new Date(data?.membershipStartMs), 6);
   
       const updates = {};
       updates[`/users/${email}`] = 
@@ -84,9 +82,8 @@ const SwitchTo6Months = ({ data }) => {
         membershipExpiry: newMembershipExpiry.getTime(),
         picture: data?.picture
       }
-      setApiLoading(true);
       await update(ref(database), updates);
-      setApiLoading(false);
+      setUpdateData(true);
     }
   }
   
@@ -107,20 +104,19 @@ const SwitchTo6Months = ({ data }) => {
 
 const DeleteButton = ({ data }) => {
   const { database } = firebase();
-  const { setApiLoading } = useAdminDashboard();
+  const { setUpdateData } = useAdminDashboard();
 
   const onDeleteButtonClicked = async () => {
     if(window.confirm('Are you sure?')) {
       const email = data?.email;
-      setApiLoading(true);
       await remove(ref(database, `users/${email}`));
-      setApiLoading(false);
+      setUpdateData(true);
     }
   }
 
   return (
     <div>
-      <Button onClick={onDeleteButtonClicked} variant='primary'>Delete</Button>
+      <Button onClick={onDeleteButtonClicked} variant='danger'>Delete</Button>
     </div>
   )
 }
@@ -142,7 +138,7 @@ const ActiveInactiveBadge = ({ data }) => {
 }
 
 const AdminDashboard = () => {
-  const [usersData, setUsersData] = useState([]);
+  // const [usersData, setUsersData] = useState([]);
   const [columnDefs] = useState([
     {field: 'sanitizedEmail', sortable: true, headerName: 'Email', filter: true},
     {field: 'Plan Status', cellRenderer: ActiveInactiveBadge},
@@ -154,40 +150,46 @@ const AdminDashboard = () => {
     {field: 'delete', cellRenderer: DeleteButton},
   ])
   const { database } = firebase();
-  const { apiLoading, setApiLoading } = useAdminDashboard();
+  const { apiLoading, setApiLoading, usersData, setUsersData, updateData, setUpdateData } = useAdminDashboard();
   const navigate = useNavigate();
+  const firstRender = useRef(true);
 
   useEffect(() => {
     (async () => {
-      setApiLoading(true);
-      const snapshot = await get(child(ref(database), `users`));
-      if(snapshot.exists()) {
-        const response = snapshot.val();
-        const data = Object.keys(response).map((email) => {
-          const userAcc = response[email];
-          const currentTimeMs = new Date().getTime();
-          const isMembershipActive = currentTimeMs >= parseInt(userAcc.membershipStart) && currentTimeMs <= parseInt(userAcc.membershipExpiry)
-          return {
-            membershipExpiryMs: userAcc.membershipExpiry,
-            membershipStartMs: userAcc.membershipStart,
-            membershipExpiry: formatDate(userAcc.membershipExpiry),
-            membershipStart: formatDate(userAcc.membershipStart),
-            email,
-            sanitizedEmail: resanitizeEmail(email),
-            picture: userAcc.picture,
-            isMembershipActive
-          }
-        });
-        setUsersData(data);
-        setApiLoading(false);
+      // Detect if first render AND needs to update data
+      if(updateData || firstRender.current) {
+        setApiLoading(true);
+        const snapshot = await get(child(ref(database), `users`));
+        if(snapshot.exists()) {
+          const response = snapshot.val();
+          const data = Object.keys(response).map((email) => {
+            const userAcc = response[email];
+            const currentTimeMs = new Date().getTime();
+            const isMembershipActive = currentTimeMs >= parseInt(userAcc.membershipStart) && currentTimeMs <= parseInt(userAcc.membershipExpiry)
+            return {
+              membershipExpiryMs: userAcc.membershipExpiry,
+              membershipStartMs: userAcc.membershipStart,
+              membershipExpiry: formatDate(userAcc.membershipExpiry),
+              membershipStart: formatDate(userAcc.membershipStart),
+              email,
+              sanitizedEmail: resanitizeEmail(email),
+              picture: userAcc.picture,
+              isMembershipActive
+            }
+          });
+          setUsersData(data);
+          setApiLoading(false);
+        }
+        setUpdateData(false);
+        firstRender.current = false;
       }
       // Handle if no users are avail
     }
     )();
-  }, [])
+  }, [updateData])
 
   const onBackPressed = () => {
-    navigate(-1);
+    navigate('/profile');
   }
 
   return (

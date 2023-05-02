@@ -131,7 +131,7 @@ const AdminProfile = () => {
   }, [])
 
   const onBackPressed = () => {
-    navigate(-1);
+    navigate('/');
   }
 
   return (

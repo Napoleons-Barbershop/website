@@ -4,6 +4,13 @@ import { initialAdminDashboardContext, AdminDashboardContext } from './adminDash
 const AdminDashboardProvider = ({ children }) => {
   const [adminDashboardData, setAdminDashboardData] = useState(initialAdminDashboardContext);
 
+  const setUsersData = (usersData) => {
+    setAdminDashboardData((state) => ({
+      ...state,
+      usersData
+    }))
+  }
+
   const setApiLoading = (apiLoading) => {
     setAdminDashboardData((state) => ({
       ...state,
@@ -11,9 +18,16 @@ const AdminDashboardProvider = ({ children }) => {
     }))
   }
 
+  const setUpdateData = (updateData) => {
+    setAdminDashboardData((state) => ({
+      ...state,
+      updateData
+    }))
+  }
+
   return (
     <AdminDashboardContext.Provider
-      value={{ ...adminDashboardData, setApiLoading }}
+      value={{ ...adminDashboardData, setUsersData, setApiLoading, setUpdateData }}
     >
       {children}
     </AdminDashboardContext.Provider>
