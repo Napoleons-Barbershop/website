@@ -10,15 +10,15 @@ const initializeFirebaseConfig = () => {
   // Your web app's Firebase configuration
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   const firebaseConfig = {
-    apiKey: "AIzaSyCs9qg25g0Zjwdwg4cBMUMc6w1HDVhd5mY",
+    apiKey: process.env.REACT_APP_API_KEY,
     // authDomain: "napoleons-barbershop.firebaseapp.com",
-    authDomain: "napoleons-barbershop.firebaseapp.com",
-    projectId: "napoleons-barbershop",
-    storageBucket: "napoleons-barbershop.appspot.com",
-    messagingSenderId: "76631314763",
-    appId: "1:76631314763:web:83365fbff198a1e01818ce",
-    measurementId: "G-XZW89G68WY",
-    databaseURL: "https://napoleons-barbershop-default-rtdb.asia-southeast1.firebasedatabase.app/",
+    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_APP_ID,
+    measurementId: process.env.REACT_APP_MEASUREMENT_ID,
+    databaseURL: process.env.REACT_APP_DATABASE_URL,
   };
 
   // Initialize Firebase
