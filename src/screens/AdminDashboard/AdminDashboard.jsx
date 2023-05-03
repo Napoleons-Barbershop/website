@@ -200,6 +200,7 @@ const AdminDashboard = () => {
               <MdArrowBack onClick={onBackPressed} size={35} style={{color: WHITE , cursor: 'pointer'}} />
             </nav>
           </header>
+          <h3 style={{padding: 20, paddingBottom: 0, textAlign: 'center'}}>Admin Dashboard</h3>
           {apiLoading ?
             <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
               <Spinner animation="border" role="status" style={{width: '4rem', height: '4rem', marginTop: 100}} />

@@ -43,7 +43,7 @@ const ProductsAndServices = () => {
             <ProductsAndServicesShavingCol md={6}>
               <ProductsAndServicesProductWrapper>
                 <ProductsAndServicesProductTitle>Hot-Towel Shave</ProductsAndServicesProductTitle>
-                <ProductsAndServicesProductPrice>25k</ProductsAndServicesProductPrice>
+                <ProductsAndServicesProductPrice>40k</ProductsAndServicesProductPrice>
               </ProductsAndServicesProductWrapper>
               <ProductsAndServicesProductDescription>The ladies will love your trimmed beard, kings.</ProductsAndServicesProductDescription>
             </ProductsAndServicesShavingCol>
