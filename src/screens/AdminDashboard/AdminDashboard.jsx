@@ -22,12 +22,12 @@ const Add3Months = ({ data }) => {
   const onButtonClicked = async () => {
     if(window.confirm('Are you sure?')) {
       const email = data?.email;
-      const newMembershipExpiry = addMonths(new Date(data?.membershipExpiryMs), 3);
+      const newMembershipExpiry = addMonths(new Date(data?.membershipExpiry), 3);
   
       const updates = {};
       updates[`/users/${email}`] = 
       { 
-        membershipStart: data?.membershipStartMs, 
+        membershipStart: data?.membershipStart, 
         membershipExpiry: newMembershipExpiry.getTime(),
         picture: data?.picture
       }
@@ -47,12 +47,12 @@ const Add6Months = ({ data }) => {
   const onButtonClicked = async () => {
     if(window.confirm('Are you sure?')) {
       const email = data?.email;
-      const newMembershipExpiry = addMonths(new Date(data?.membershipExpiryMs), 6);
+      const newMembershipExpiry = addMonths(new Date(data?.membershipExpiry), 6);
   
       const updates = {};
       updates[`/users/${email}`] = 
       { 
-        membershipStart: data?.membershipStartMs, 
+        membershipStart: data?.membershipStart, 
         membershipExpiry: newMembershipExpiry.getTime(),
         picture: data?.picture
       }
@@ -73,12 +73,12 @@ const SwitchTo6Months = ({ data }) => {
   const onButtonClicked = async () => {
     if(window.confirm('Are you sure?')) {
       const email = data?.email;
-      const newMembershipExpiry = addMonths(new Date(data?.membershipStartMs), 6);
+      const newMembershipExpiry = addMonths(new Date(data?.membershipStart), 6);
   
       const updates = {};
       updates[`/users/${email}`] = 
       { 
-        membershipStart: data?.membershipStartMs, 
+        membershipStart: data?.membershipStart, 
         membershipExpiry: newMembershipExpiry.getTime(),
         picture: data?.picture
       }
@@ -88,8 +88,8 @@ const SwitchTo6Months = ({ data }) => {
   }
   
   const memberPlan = () => {
-    const memberStart = new Date(data?.membershipStartMs);
-    const memberExpiry = new Date(data?.membershipExpiryMs);
+    const memberStart = new Date(data?.membershipStart);
+    const memberExpiry = new Date(data?.membershipExpiry);
     return differenceInMonths(memberExpiry, memberStart);
   }
   
@@ -137,15 +137,27 @@ const ActiveInactiveBadge = ({ data }) => {
   )
 }
 
+const MembershipExpiry = ({ data }) => {
+  return (
+    <span>{formatDate(data?.membershipExpiry)}</span>
+  )
+}
+
+const MembershipStart = ({ data }) => {
+  return (
+    <span>{formatDate(data?.membershipStart)}</span>
+  )
+}
+
 const AdminDashboard = () => {
   const [columnDefs] = useState([
     {field: 'sanitizedEmail', sortable: true, headerName: 'Email', filter: true},
-    {field: 'Plan Status', cellRenderer: ActiveInactiveBadge},
-    {field: 'membershipStart', sortable: true},
-    {field: 'membershipExpiry', sortable: true},
+    {field: 'isMembershipActive', sortable: true, headerName: 'Plan Status', cellRenderer: ActiveInactiveBadge, filter: true},
+    {field: 'membershipStart', sortable: true, cellRenderer: MembershipStart},
+    {field: 'membershipExpiry', sortable: true, cellRenderer: MembershipExpiry},
     {field: 'Add 3 months', cellRenderer: Add3Months},
-    {field: 'Add 6 months', cellRenderer: Add6Months},
-    {field: 'Switch to 6 months', cellRenderer: SwitchTo6Months},
+    // {field: 'Add 6 months', cellRenderer: Add6Months},
+    // {field: 'Switch to 6 months', cellRenderer: SwitchTo6Months},
     {field: 'delete', cellRenderer: DeleteButton},
   ])
   const { database } = firebase();
@@ -166,10 +178,8 @@ const AdminDashboard = () => {
             const currentTimeMs = new Date().getTime();
             const isMembershipActive = currentTimeMs >= parseInt(userAcc.membershipStart) && currentTimeMs <= parseInt(userAcc.membershipExpiry)
             return {
-              membershipExpiryMs: userAcc.membershipExpiry,
-              membershipStartMs: userAcc.membershipStart,
-              membershipExpiry: formatDate(userAcc.membershipExpiry),
-              membershipStart: formatDate(userAcc.membershipStart),
+              membershipExpiry: userAcc.membershipExpiry,
+              membershipStart: userAcc.membershipStart,
               email,
               sanitizedEmail: resanitizeEmail(email),
               picture: userAcc.picture,
@@ -210,6 +220,7 @@ const AdminDashboard = () => {
                 className="ag-theme-alpine" 
                 rowData={usersData}
                 columnDefs={columnDefs}
+                rowHeight={50}
               />
             </div>
           }
