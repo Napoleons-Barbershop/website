@@ -221,6 +221,7 @@ const AdminDashboard = () => {
                 rowData={usersData}
                 columnDefs={columnDefs}
                 rowHeight={50}
+                suppressMenuHide
               />
             </div>
           }
