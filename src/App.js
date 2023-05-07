@@ -6,6 +6,7 @@ import Profile from './screens/Profile/Profile';
 import LoginProvider from './contexts/loginProvider';
 import AdminDashboard from './screens/AdminDashboard/AdminDashboard';
 import AdminDashboardProvider from './contexts/adminDashboardProvider';
+import AfterCutPic from './screens/AfterCutPic/AfterCutPic';
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
             <Route path='/' element={<Home />} />
             <Route path='/profile' element={<Profile />} />
             <Route path='/admin-dashboard' element={<AdminDashboard />} />
+            <Route path='/after-cut-pic' element={<AfterCutPic />} />
           </Routes>
         </AdminDashboardProvider>
       </LoginProvider>

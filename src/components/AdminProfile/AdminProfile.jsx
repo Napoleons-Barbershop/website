@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Col, Container, Row, Form, Dropdown, Button } from 'react-bootstrap';
-import { NAPOLEON_BG, NAPOLEON_BROWN_COLOR, WHITE } from '../../utils/colors';
+import { NAPOLEON_BROWN_COLOR } from '../../utils/colors';
 import { ADMIN_EMAIL, MEMBERSHIP_PLANS  } from '../../utils/constants';
 import { AiFillCamera } from 'react-icons/ai'
 import CameraModal from '../CameraModal/CameraModal';
@@ -13,7 +13,7 @@ import { signOut } from "firebase/auth";
 import useLogin from '../../hooks/useLogin';
 import { addMonths } from 'date-fns'
 import { useEffect } from 'react';
-import { MdArrowBack } from 'react-icons/md'
+import NavBarBack from '../NavBarBack/NavBarBack';
 
 const AdminProfile = () => {
 
@@ -123,26 +123,26 @@ const AdminProfile = () => {
     navigate('/admin-dashboard');
   }
 
+  const onAfterCutPic = () => {
+    navigate('/after-cut-pic');
+  }
+
   useEffect(() => {
     if(!user || !isAdmin) {
       navigate('/')
     }
   }, [])
 
-  const onBackPressed = () => {
-    navigate('/');
-  }
-
   return (
     <div>
-      <header style={{backgroundColor: NAPOLEON_BG}}>
-        <nav style={{padding: 20, paddingLeft: 20}}>
-          <MdArrowBack onClick={onBackPressed} size={35} style={{color: WHITE , cursor: 'pointer'}} />
-        </nav>
-      </header>
+      <NavBarBack route="/" />
       <Container fluid style={{padding: 20, maxWidth: 400}}>
       <Row>
         <Col>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-evenly' }}>
+            <Button onClick={onAdminDashboardClick} style={{ marginBottom: 10, color: '#fff'}} variant="secondary">Admin Dashboard</Button>
+            <Button onClick={onAfterCutPic} style={{ marginBottom: 10, color: '#fff'}} variant="secondary">After-cut pic</Button>
+          </div>
           <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
             {renderAlert()}
             <h3 style={{paddingBottom: 50}}>Enter new membership plan</h3>
@@ -152,7 +152,7 @@ const AdminProfile = () => {
                 <Form.Control value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Enter email" />
               </Form.Group>
 
-              <Button style={{marginBottom: 10, width: '100%'}} variant="primary" onClick={onTakePictureClick}>
+              <Button style={{marginBottom: 10, width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}} variant="primary" onClick={onTakePictureClick}>
                 <AiFillCamera size={25} style={{marginRight: 10}} />
                 Take a picture
               </Button>
@@ -179,7 +179,6 @@ const AdminProfile = () => {
                   })}
                 </Dropdown.Menu>
               </Dropdown>
-              <Button onClick={onAdminDashboardClick} style={{width: '100%', marginBottom: 10, color: '#fff'}} variant="secondary">Admin Dashboard</Button>
               <Button style={{width: '100%', marginBottom: 10}} variant="success" type="submit">
                 Submit
               </Button>

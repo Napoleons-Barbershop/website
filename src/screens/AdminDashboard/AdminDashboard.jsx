@@ -8,12 +8,13 @@ import { useState } from 'react';
 import { differenceInMonths, addMonths } from 'date-fns';
 import { formatDate, resanitizeEmail } from '../../utils/utils';
 import useAdminDashboard from '../../hooks/useAdminDashboard';
-import { MdArrowBack } from 'react-icons/md'
-import { NAPOLEON_BG, WHITE } from '../../utils/colors';
 import { useNavigate } from 'react-router-dom';
+import DatePicker from "react-datepicker";
 
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
+import "react-datepicker/dist/react-datepicker.css";
+import NavBarBack from '../../components/NavBarBack/NavBarBack';
 
 const Add3Months = ({ data }) => {
   const { database } = firebase();
@@ -149,12 +150,39 @@ const MembershipStart = ({ data }) => {
   )
 }
 
+const DatepickerCellEditor = ({ data }) => {
+  const [startDate, setStartDate] = useState(data?.membershipExpiry);
+  const { database } = firebase();
+  const { setUpdateData } = useAdminDashboard();
+
+  const handleDateSelect = async () => {
+    if(window.confirm('Are you sure?')) {
+      const email = data?.email;
+      const newMembershipExpiry = new Date(startDate).getTime();
+  
+      const updates = {};
+      updates[`/users/${email}`] = 
+      { 
+        membershipStart: data?.membershipStart, 
+        membershipExpiry: newMembershipExpiry,
+        picture: data?.picture
+      }
+      await update(ref(database), updates);
+      setUpdateData(true);
+    }
+  }
+
+  return (
+    <DatePicker onSelect={handleDateSelect} portalId="root" popperClassName="ag-custom-component-popup" selected={startDate} onChange={(date) => setStartDate(date)} />
+  )
+}
+
 const AdminDashboard = () => {
   const [columnDefs] = useState([
     {field: 'sanitizedEmail', sortable: true, headerName: 'Email', filter: true},
     {field: 'isMembershipActive', sortable: true, headerName: 'Plan Status', cellRenderer: ActiveInactiveBadge, filter: true},
     {field: 'membershipStart', sortable: true, cellRenderer: MembershipStart},
-    {field: 'membershipExpiry', sortable: true, cellRenderer: MembershipExpiry},
+    {field: 'membershipExpiry', sortable: true, cellRenderer: MembershipExpiry, editable: true, cellEditor: DatepickerCellEditor},
     {field: 'Add 3 months', cellRenderer: Add3Months},
     // {field: 'Add 6 months', cellRenderer: Add6Months},
     // {field: 'Switch to 6 months', cellRenderer: SwitchTo6Months},
@@ -197,19 +225,11 @@ const AdminDashboard = () => {
     )();
   }, [updateData])
 
-  const onBackPressed = () => {
-    navigate('/profile');
-  }
-
   return (
     <Container fluid style={{ paddingLeft: 0, paddingRight: 0 }}>
       <Row>
         <Col style={{height: 400, width: '100%'}}>
-          <header style={{backgroundColor: NAPOLEON_BG}}>
-            <nav style={{padding: 20, paddingLeft: 20}}>
-              <MdArrowBack onClick={onBackPressed} size={35} style={{color: WHITE , cursor: 'pointer'}} />
-            </nav>
-          </header>
+          <NavBarBack route="/profile" />
           <h3 style={{padding: 20, paddingBottom: 0, textAlign: 'center'}}>Admin Dashboard</h3>
           {apiLoading ?
             <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
