@@ -11,7 +11,7 @@ const PictureModal = ({ show, handleClose, pictures, capsterName, title }) => {
         )
       })
     } else {
-      return 'No pictures to show'
+      return 'No details to show'
     }
   }
 

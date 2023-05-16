@@ -103,10 +103,10 @@ const UserProfile = () => {
       <Container fluid style={{padding: 20, maxWidth: 400}}>
         <Row>
           <Col>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-evenly' }}>
+            {!!userProfileData && <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-evenly' }}>
               <Button onClick={() => setProfileMode('member-profile')} style={{marginBottom: 10, color: '#fff'}} variant="secondary">Member Profile</Button>
               <Button onClick={() => setProfileMode('after-cut-profile')} style={{ marginBottom: 10, color: '#fff'}} variant="secondary">Latest cut details</Button>
-            </div>
+            </div>}
             <div style={{padding: 20, display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
               {renderProfile()}
             </div>
