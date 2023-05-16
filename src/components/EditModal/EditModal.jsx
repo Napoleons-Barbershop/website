@@ -51,14 +51,25 @@ const EditModal = ({ show, handleClose, field, data }) => {
           const email = data?.email;
       
           const updates = {};
-          updates[`/users/${email}`] = 
-          { 
-            membershipStart: data?.membershipStart, 
-            membershipExpiry: data?.membershipExpiry,
-            picture: data?.picture,
-            name,
-            phoneNumber: data?.phoneNumber,
-            afterCutDetails: data?.afterCutDetails
+          if(!data?.afterCutDetails) {
+            updates[`/users/${email}`] = 
+            { 
+              membershipStart: data?.membershipStart, 
+              membershipExpiry: data?.membershipExpiry,
+              picture: data?.picture,
+              name,
+              phoneNumber: data?.phoneNumber,
+            }
+          } else {
+            updates[`/users/${email}`] = 
+            { 
+              membershipStart: data?.membershipStart, 
+              membershipExpiry: data?.membershipExpiry,
+              picture: data?.picture,
+              name,
+              phoneNumber: data?.phoneNumber,
+              afterCutDetails: data?.afterCutDetails
+            }
           }
           await update(ref(database), updates);
           setUpdateData(true);
@@ -70,14 +81,25 @@ const EditModal = ({ show, handleClose, field, data }) => {
           const email = data?.email;
       
           const updates = {};
-          updates[`/users/${email}`] = 
-          { 
-            membershipStart: data?.membershipStart, 
-            membershipExpiry: data?.membershipExpiry,
-            picture: data?.picture,
-            name: data?.name,
-            phoneNumber: phoneNumber,
-            afterCutDetails: data?.afterCutDetails
+          if(!data?.afterCutDetails) {
+            updates[`/users/${email}`] = 
+            { 
+              membershipStart: data?.membershipStart, 
+              membershipExpiry: data?.membershipExpiry,
+              picture: data?.picture,
+              name: data?.name,
+              phoneNumber,
+            }
+          } else {
+            updates[`/users/${email}`] = 
+            { 
+              membershipStart: data?.membershipStart, 
+              membershipExpiry: data?.membershipExpiry,
+              picture: data?.picture,
+              name: data?.name,
+              phoneNumber,
+              afterCutDetails: data?.afterCutDetails
+            }
           }
           await update(ref(database), updates);
           setUpdateData(true);

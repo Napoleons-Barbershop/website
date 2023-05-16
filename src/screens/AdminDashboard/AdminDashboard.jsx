@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import firebase from '../../utils/firebase';
 import { ref, get, child, remove, update } from "firebase/database";
 import { useState } from 'react';
-import { differenceInMonths, addMonths } from 'date-fns';
+import { addMonths, subMonths } from 'date-fns';
 import { formatDate, resanitizeEmail } from '../../utils/utils';
 import useAdminDashboard from '../../hooks/useAdminDashboard';
 import { useNavigate } from 'react-router-dom';
@@ -24,7 +24,7 @@ const Add3Months = ({ data }) => {
   const { setUpdateData } = useAdminDashboard();
 
   const onButtonClicked = async () => {
-    if(window.confirm('Are you sure?')) {
+    if(window.confirm('Are you sure to add 3 months?')) {
       const email = data?.email;
       const newMembershipExpiry = addMonths(new Date(data?.membershipExpiry), 3);
   
@@ -45,6 +45,35 @@ const Add3Months = ({ data }) => {
 
   return (
     <Button onClick={onButtonClicked} variant='primary'>Add 3 mth</Button>
+  )
+}
+
+const Decrease3Months = ({ data }) => {
+  const { database } = firebase();
+  const { setUpdateData } = useAdminDashboard();
+
+  const onButtonClicked = async () => {
+    if(window.confirm('Are you sure to subtract 3 months?')) {
+      const email = data?.email;
+      const newMembershipExpiry = subMonths(new Date(data?.membershipExpiry), 3);
+  
+      const updates = {};
+      updates[`/users/${email}`] = 
+      { 
+        membershipStart: data?.membershipStart, 
+        membershipExpiry: newMembershipExpiry.getTime(),
+        picture: data?.picture,
+        name: data?.name,
+        phoneNumber: data?.phoneNumber,
+        afterCutDetails: data?.afterCutDetails
+      }
+      await update(ref(database), updates);
+      setUpdateData(true);
+    }
+  }
+
+  return (
+    <Button onClick={onButtonClicked} variant='warning'>Subtract 3 mth</Button>
   )
 }
 
@@ -81,8 +110,8 @@ const DeleteButton = ({ data }) => {
   const { setUpdateData } = useAdminDashboard();
 
   const onDeleteButtonClicked = async () => {
-    if(window.confirm('Are you sure?')) {
-      const email = data?.email;
+    const email = data?.email;
+    if(window.confirm(`Are you sure you want to delete ${email} account?`)) {
       await remove(ref(database, `users/${email}`));
       setUpdateData(true);
     }
@@ -175,6 +204,7 @@ const AdminDashboard = () => {
     {field: 'Member Profile Picture', cellRenderer: ViewProfilePicture, onCellClicked: onPictureCellClicked},
     {field: 'After-cut Details', cellRenderer: ViewAfterCutPictures, onCellClicked: onPictureCellClicked},
     {field: 'Add 3 months', cellRenderer: Add3Months},
+    {field: 'Subtract 3 months', cellRenderer: Decrease3Months},
     // {field: 'Add 6 months', cellRenderer: Add6Months},
     // {field: 'Switch to 6 months', cellRenderer: SwitchTo6Months},
     {field: 'delete', cellRenderer: DeleteButton},
