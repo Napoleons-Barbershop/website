@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Col, Container, Row, Form, Dropdown, Button } from 'react-bootstrap';
+import { Col, Container, Row, Form, Dropdown, Button, Alert } from 'react-bootstrap';
 import { NAPOLEON_BROWN_COLOR } from '../../utils/colors';
 import { ADMIN_EMAIL, MEMBERSHIP_PLANS  } from '../../utils/constants';
 import { AiFillCamera } from 'react-icons/ai'
@@ -8,7 +8,6 @@ import firebase from '../../utils/firebase';
 import { ref, set, get, child } from "firebase/database";
 import { sanitizeEmail } from '../../utils/utils';
 import { useNavigate } from 'react-router-dom';
-import Alert from 'react-bootstrap/Alert';
 import { signOut } from "firebase/auth";
 import useLogin from '../../hooks/useLogin';
 import { addMonths } from 'date-fns'
@@ -25,6 +24,8 @@ const AdminProfile = () => {
   const [selectedMembershipOption, setSelectedMembershipOption] = useState('3');
   const [pictureMode, setPictureMode] = useState(false);
   const [email, setEmail] = useState(null);
+  const [phoneNumber, setPhoneNumber] = useState(null);
+  const [name, setName] = useState(null);
   const [memberPicture, setMemberPicture] = useState(null);
   const [alertVariant, setAlertVariant] = useState(null);
 
@@ -44,7 +45,7 @@ const AdminProfile = () => {
 
   const onSubmitMembershipPlan = async (evt) => {
     evt.preventDefault();
-    if(email && memberPicture && selectedMembershipOption) {
+    if(email && memberPicture && selectedMembershipOption && phoneNumber && name) {
       const sanitizedEmail = sanitizeEmail(email);
       let membershipStart = new Date().getTime();
       let membershipExpiry;
@@ -58,9 +59,10 @@ const AdminProfile = () => {
       const payload = {
         picture: memberPicture,
         membershipStart,
-        membershipExpiry: membershipExpiry.getTime()
+        membershipExpiry: membershipExpiry.getTime(),
+        phoneNumber,
+        name
       }
-
       try {
         const snapshot = await get(child(ref(database), `users/${sanitizedEmail}`));
         if(snapshot.exists()) {
@@ -68,6 +70,7 @@ const AdminProfile = () => {
         } else {
           setAlertVariant(null);
           await set(ref(database, `users/${sanitizedEmail}`), payload);
+          window.scrollTo(0, 0);
           showAlert('success');
           setTimeout(() => {
             navigate('/');
@@ -77,6 +80,8 @@ const AdminProfile = () => {
         console.error(err);
         showAlert('danger')
       }
+    } else {
+      alert("Please fill email, name, phone number and picture");
     }
   }
 
@@ -140,7 +145,7 @@ const AdminProfile = () => {
       <Row>
         <Col>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-evenly' }}>
-            <Button onClick={onAdminDashboardClick} style={{ marginBottom: 10, color: '#fff'}} variant="secondary">Admin Dashboard</Button>
+            <Button onClick={onAdminDashboardClick} style={{marginBottom: 10, color: '#fff'}} variant="secondary">Admin Dashboard</Button>
             <Button onClick={onAfterCutPic} style={{ marginBottom: 10, color: '#fff'}} variant="secondary">After-cut pic</Button>
           </div>
           <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
@@ -149,7 +154,17 @@ const AdminProfile = () => {
             <Form style={{width: '75%'}} onSubmit={onSubmitMembershipPlan}>
               <Form.Group style={{paddingBottom: 20}}>
                 <Form.Label>Email address</Form.Label>
-                <Form.Control value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Enter email" />
+                <Form.Control required value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Enter email" />
+              </Form.Group>
+
+              <Form.Group style={{paddingBottom: 20}}>
+                <Form.Label>Name</Form.Label>
+                <Form.Control required value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder="Enter name" />
+              </Form.Group>
+
+              <Form.Group style={{paddingBottom: 20}}>
+                <Form.Label>Phone number (021... or 08...)</Form.Label>
+                <Form.Control required value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} pattern="(\()?(\+62|62|0)(\d{2,3})?\)?[ .-]?\d{2,4}[ .-]?\d{2,4}[ .-]?\d{2,4}" placeholder="Enter phone number" />
               </Form.Group>
 
               <Button style={{marginBottom: 10, width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}} variant="primary" onClick={onTakePictureClick}>

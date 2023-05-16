@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { Col, Container, Row, Form, Button } from 'react-bootstrap';
+import { Col, Container, Row, Form, Button, Alert } from 'react-bootstrap';
 import NavBarBack from '../../components/NavBarBack/NavBarBack';
 import { AiFillCamera } from 'react-icons/ai'
 import CameraModal from '../../components/CameraModal/CameraModal';
 import useLogin from '../../hooks/useLogin';
-import { signOut } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
 import firebase from '../../utils/firebase';
-import { NAPOLEON_BROWN_COLOR } from '../../utils/colors';
+import { ref, get, child, update } from "firebase/database";
 
 const AfterCutPic = () => {
   const [capsterName, setCapsterName] = useState(null);
@@ -15,18 +14,76 @@ const AfterCutPic = () => {
   const [firstAfterCutPic, setFirstAfterCutPic] = useState(null);
   const [secondAfterCutPic, setSecondAfterCutPic] = useState(null);
   const [thirdAfterCutPic, setThirdAfterCutPic] = useState(null);
-  const [userEmail, setUserEmail] = useState(null);
+  const [phoneNumber, setPhoneNumber] = useState(null);
+  const [alertVariant, setAlertVariant] = useState(null);
 
   const { setUser } = useLogin();
   const navigate = useNavigate();
-  const { auth } = firebase();
+  const { auth, database } = firebase();
 
   const isPictureModeNo1 = pictureMode === 1;
   const isPictureModeNo2 = pictureMode === 2;
   const isPictureModeNo3 = pictureMode === 3;
 
-  const onSubmitAfterCutPic = () => {
-    console.log('on submit');
+  const onSubmitAfterCutPic = async (evt) => {
+    evt.preventDefault();
+    if(phoneNumber && firstAfterCutPic && capsterName) {
+      // Get all data for users
+      const snapshot = await get(child(ref(database), `users`));
+
+      const allUsersData = snapshot.val();
+      const cutDate = new Date().getTime();
+      const afterCutPics = [firstAfterCutPic];
+      if(secondAfterCutPic) {
+        afterCutPics.push(secondAfterCutPic)
+      }
+
+      if(thirdAfterCutPic) {
+        afterCutPics.push(thirdAfterCutPic);
+      }
+      const afterCutDetails = {
+        capsterName,
+        date: cutDate,
+        afterCutPics
+      }
+
+      Object.keys(allUsersData).forEach(async (email) => {
+        const user = allUsersData[email];
+        if(phoneNumber === user?.phoneNumber) {
+          const updates = {};
+          updates[`/users/${email}`] = 
+          { 
+            ...user,
+            afterCutDetails
+          }
+
+          try {
+            await update(ref(database), updates);
+            window.scrollTo(0, 0);
+            showAlert('success');
+            setTimeout(() => {
+              navigate('/');
+            }, 3000);
+          } catch(err) {
+            window.scrollTo(0, 0);
+            console.error(err);
+            showAlert('danger')
+          }
+        } else {
+          window.scrollTo(0, 0);
+          showAlert('warning')
+        }
+      })
+    } else {
+      alert("Please fill capster name, email and at least take 1 picture");
+    }
+  }
+
+  const showAlert = (variant) => {
+    setAlertVariant(variant);
+    setTimeout(() => {
+      setAlertVariant(null);
+    }, 3000)
   }
 
   const onTakePictureClick = (picNumber) => {
@@ -35,23 +92,36 @@ const AfterCutPic = () => {
 
   const handleCloseCameraModal = () => setPictureMode(false);
 
-  const onSignoutClick = () => {
-    setUser(null);
-    signOut(auth).then(() => {
-      localStorage.removeItem('user');
-      navigate('/')
-    }).catch(() => {
-      console.error('Trouble signing out')
-    })
+  const renderAlert = () => {
+    if(alertVariant === 'success') {
+      return (
+        <Alert variant="success" style={{width: '100%'}}>
+          {`After cut details are updated to ${phoneNumber}`}
+        </Alert>
+      )
+    } else if(alertVariant === 'danger') {
+      return (
+        <Alert variant="danger" style={{width: '100%'}}>
+          Something is wrong
+        </Alert>
+      )
+    } else if(alertVariant === 'warning') {
+      return (
+        <Alert variant="danger" style={{width: '100%'}}>
+          Phone number does not exist in member database
+        </Alert>
+      )
+    }
   }
 
   return (
     <div>
-      <NavBarBack route="/admin-dashboard" />
+      <NavBarBack route="/profile" />
       <Container fluid style={{padding: 20, maxWidth: 400}}>
         <Row>
           <Col>
             <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
+            {renderAlert()}
             <h3 style={{paddingBottom: 50}}>After-cut pic</h3>
               <Form style={{width: '75%'}} onSubmit={onSubmitAfterCutPic}>
                 <Form.Group style={{paddingBottom: 20}}>
@@ -89,8 +159,8 @@ const AfterCutPic = () => {
 
 
                 <Form.Group style={{paddingBottom: 20}}>
-                  <Form.Label>Email address</Form.Label>
-                  <Form.Control value={userEmail} onChange={(e) => setUserEmail(e.target.value)} type="email" placeholder="Enter email" />
+                  <Form.Label>Phone number (021... or 08...)</Form.Label>
+                  <Form.Control required value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} pattern="(\()?(\+62|62|0)(\d{2,3})?\)?[ .-]?\d{2,4}[ .-]?\d{2,4}[ .-]?\d{2,4}" placeholder="Enter phone number" />
                 </Form.Group>
 
                 <Button style={{width: '100%', marginBottom: 10}} variant="success" type="submit">

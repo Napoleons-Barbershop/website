@@ -10,11 +10,14 @@ import { formatDate, resanitizeEmail } from '../../utils/utils';
 import useAdminDashboard from '../../hooks/useAdminDashboard';
 import { useNavigate } from 'react-router-dom';
 import DatePicker from "react-datepicker";
+import NavBarBack from '../../components/NavBarBack/NavBarBack';
 
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
 import "react-datepicker/dist/react-datepicker.css";
-import NavBarBack from '../../components/NavBarBack/NavBarBack';
+import EditModal from '../../components/EditModal/EditModal';
+import { NAPOLEON_BROWN_COLOR, NAPOLEON_COMPLEMENT_COLOR } from '../../utils/colors';
+import PictureModal from '../../components/PictureModal/PictureModal';
 
 const Add3Months = ({ data }) => {
   const { database } = firebase();
@@ -30,7 +33,10 @@ const Add3Months = ({ data }) => {
       { 
         membershipStart: data?.membershipStart, 
         membershipExpiry: newMembershipExpiry.getTime(),
-        picture: data?.picture
+        picture: data?.picture,
+        name: data?.name,
+        phoneNumber: data?.phoneNumber,
+        afterCutDetails: data?.afterCutDetails
       }
       await update(ref(database), updates);
       setUpdateData(true);
@@ -41,65 +47,32 @@ const Add3Months = ({ data }) => {
     <Button onClick={onButtonClicked} variant='primary'>Add 3 mth</Button>
   )
 }
-const Add6Months = ({ data }) => {
-  const { database } = firebase();
-  const { setUpdateData } = useAdminDashboard();
 
-  const onButtonClicked = async () => {
-    if(window.confirm('Are you sure?')) {
-      const email = data?.email;
-      const newMembershipExpiry = addMonths(new Date(data?.membershipExpiry), 6);
-  
-      const updates = {};
-      updates[`/users/${email}`] = 
-      { 
-        membershipStart: data?.membershipStart, 
-        membershipExpiry: newMembershipExpiry.getTime(),
-        picture: data?.picture
-      }
-      await update(ref(database), updates)
-      setUpdateData(true);
-    }
+const ViewProfilePicture = () => {
+  const { setViewProfilePicture } = useAdminDashboard();
+
+  const onButtonClicked = () => {
+    setViewProfilePicture(true);
   }
 
   return (
-    <Button onClick={onButtonClicked} variant='primary'>Add 6 mth</Button>
+    <Button onClick={onButtonClicked} variant='primary' style={{backgroundColor: NAPOLEON_BROWN_COLOR, borderColor: NAPOLEON_BROWN_COLOR}}>
+      View profile pic
+    </Button>
   )
 }
 
-const SwitchTo6Months = ({ data }) => {
-  const { database } = firebase();
-  const { setUpdateData } = useAdminDashboard();
+const ViewAfterCutPictures = () => {
+  const { setViewAfterCutPictures } = useAdminDashboard();
 
-  const onButtonClicked = async () => {
-    if(window.confirm('Are you sure?')) {
-      const email = data?.email;
-      const newMembershipExpiry = addMonths(new Date(data?.membershipStart), 6);
-  
-      const updates = {};
-      updates[`/users/${email}`] = 
-      { 
-        membershipStart: data?.membershipStart, 
-        membershipExpiry: newMembershipExpiry.getTime(),
-        picture: data?.picture
-      }
-      await update(ref(database), updates);
-      setUpdateData(true);
-    }
+  const onButtonClicked = () => {
+    setViewAfterCutPictures(true);
   }
-  
-  const memberPlan = () => {
-    const memberStart = new Date(data?.membershipStart);
-    const memberExpiry = new Date(data?.membershipExpiry);
-    return differenceInMonths(memberExpiry, memberStart);
-  }
-  
-  const is3MonthsPlan = memberPlan() <= 4
 
   return (
-    <div>
-      {is3MonthsPlan ? <Button onClick={onButtonClicked} variant='primary'>Switch to 6 mth</Button> : null}
-    </div>
+    <Button onClick={onButtonClicked} variant='primary' style={{backgroundColor: NAPOLEON_COMPLEMENT_COLOR, borderColor: NAPOLEON_COMPLEMENT_COLOR}}>
+      View after-cut details
+    </Button>
   )
 }
 
@@ -178,19 +151,50 @@ const DatepickerCellEditor = ({ data }) => {
 }
 
 const AdminDashboard = () => {
+  const onNameCellClicked = ({ data }) => {
+    setSelectedRow(data);
+    setEditMode('name')
+  }
+
+  const onPhoneNumberCellClicked = ({ data }) => {
+    setSelectedRow(data);
+    setEditMode('phoneNumber')
+  }
+
+  const onPictureCellClicked = ({ data }) => {
+    setSelectedRow(data);
+  }
+  
   const [columnDefs] = useState([
     {field: 'sanitizedEmail', sortable: true, headerName: 'Email', filter: true},
     {field: 'isMembershipActive', sortable: true, headerName: 'Plan Status', cellRenderer: ActiveInactiveBadge, filter: true},
+    {field: 'name', sortable: true, headerName: 'Name', filter: true, onCellClicked: onNameCellClicked},
+    {field: 'phoneNumber', sortable: true, headerName: 'Phone Number', filter: true, onCellClicked: onPhoneNumberCellClicked},
     {field: 'membershipStart', sortable: true, cellRenderer: MembershipStart},
-    {field: 'membershipExpiry', sortable: true, cellRenderer: MembershipExpiry, editable: true, cellEditor: DatepickerCellEditor},
+    {field: 'membershipExpiry', sortable: true, cellRenderer: MembershipExpiry, editable: true, /*cellEditor: DatepickerCellEditor*/},
+    {field: 'Member Profile Picture', cellRenderer: ViewProfilePicture, onCellClicked: onPictureCellClicked},
+    {field: 'After-cut Details', cellRenderer: ViewAfterCutPictures, onCellClicked: onPictureCellClicked},
     {field: 'Add 3 months', cellRenderer: Add3Months},
     // {field: 'Add 6 months', cellRenderer: Add6Months},
     // {field: 'Switch to 6 months', cellRenderer: SwitchTo6Months},
     {field: 'delete', cellRenderer: DeleteButton},
-  ])
+  ]);
+  const [editMode, setEditMode] = useState(null);
+  const [selectedRow, setSelectedRow] = useState(null);
+
   const { database } = firebase();
-  const { apiLoading, setApiLoading, usersData, setUsersData, updateData, setUpdateData } = useAdminDashboard();
-  const navigate = useNavigate();
+  const { 
+    apiLoading, 
+    setApiLoading, 
+    usersData, 
+    setUsersData, 
+    updateData, 
+    setUpdateData, 
+    viewProfilePicture, 
+    setViewProfilePicture,
+    viewAfterCutPictures,
+    setViewAfterCutPictures
+  } = useAdminDashboard();
   const firstRender = useRef(true);
 
   useEffect(() => {
@@ -211,7 +215,10 @@ const AdminDashboard = () => {
               email,
               sanitizedEmail: resanitizeEmail(email),
               picture: userAcc.picture,
-              isMembershipActive
+              isMembershipActive,
+              name: userAcc?.name || '-',
+              phoneNumber: userAcc?.phoneNumber || '-',
+              afterCutDetails: userAcc?.afterCutDetails
             }
           });
           setUsersData(data);
@@ -223,7 +230,19 @@ const AdminDashboard = () => {
       // Handle if no users are avail
     }
     )();
-  }, [updateData])
+  }, [updateData]);
+
+  const handleEditModalClose = () => {
+    setEditMode(null);
+  }
+
+  const handleViewProfilePictureModalClose = () => {
+    setViewProfilePicture(false);
+  }
+
+  const handleViewAfterCutPictureModalClose = () => {
+    setViewAfterCutPictures(false);
+  }
 
   return (
     <Container fluid style={{ paddingLeft: 0, paddingRight: 0 }}>
@@ -231,6 +250,27 @@ const AdminDashboard = () => {
         <Col style={{height: 400, width: '100%'}}>
           <NavBarBack route="/profile" />
           <h3 style={{padding: 20, paddingBottom: 0, textAlign: 'center'}}>Admin Dashboard</h3>
+
+          {editMode && <EditModal show={!!editMode} handleClose={handleEditModalClose} field={editMode} data={selectedRow} />}
+
+          {viewProfilePicture && 
+            <PictureModal 
+              show={viewProfilePicture} 
+              handleClose={handleViewProfilePictureModalClose} 
+              title="Member Profile Picture"
+              pictures={[selectedRow?.picture]}
+             />
+          }
+          {viewAfterCutPictures && 
+            <PictureModal 
+              show={viewAfterCutPictures} 
+              handleClose={handleViewAfterCutPictureModalClose} 
+              title="After-cut Details"
+              pictures={selectedRow?.afterCutDetails?.afterCutPics}
+              capsterName={selectedRow?.afterCutDetails?.capsterName}
+             />
+          }
+          
           {apiLoading ?
             <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
               <Spinner animation="border" role="status" style={{width: '4rem', height: '4rem', marginTop: 100}} />

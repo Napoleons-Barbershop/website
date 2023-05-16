@@ -36,7 +36,6 @@ export const CAROUSEL_RESPONSIVE_SIZES_CHARITY = {
   }
 };
 
-export const PASSWORD_REGEX = `^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$`
 export const ADMIN_EMAIL = 'napoleonsbarbershop@gmail.com';
 
 export const MEMBERSHIP_PLANS = [

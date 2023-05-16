@@ -8,15 +8,26 @@ import { ADMIN_EMAIL } from '../../utils/constants';
 
 const Profile = () => {
 
-  const { user } = useLogin();
+  const { user, setUser } = useLogin();
   const navigate = useNavigate();
   const isAdmin = user?.email === ADMIN_EMAIL
 
+  // useEffect(() => {
+  //   if(!user) {
+  //     navigate('/')
+  //   }
+  // }, [])
   useEffect(() => {
+    const userFromLocalStorage = localStorage.getItem('user');
     if(!user) {
-      navigate('/')
+      if(userFromLocalStorage) {
+        const parsedUser = JSON.parse(userFromLocalStorage);
+        setUser(parsedUser);
+      } else {
+        navigate('/')
+      }
     }
-  }, [])
+  }, []);
 
   return (
     <>

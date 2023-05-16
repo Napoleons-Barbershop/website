@@ -9,6 +9,7 @@ import { ref, get, child } from "firebase/database";
 import { useEffect } from 'react';
 import { formatDate, resanitizeEmail, sanitizeEmail } from '../../utils/utils';
 import { useState } from 'react';
+import NavBarBack from '../NavBarBack/NavBarBack';
 
 const UserProfile = () => {
   const { auth, database } = firebase();
@@ -17,6 +18,7 @@ const UserProfile = () => {
 
   const [userProfileData, setUserProfileData] = useState(null);
   const [userProfileDataLoading, setUserProfileDataLoading] = useState(false);
+  const [profileMode, setProfileMode] = useState('member-profile');
 
   useEffect(() => {
     (async () => {
@@ -52,40 +54,66 @@ const UserProfile = () => {
         <Spinner animation="border" role="status" style={{width: '4rem', height: '4rem'}} />
       )
     } else {
-      if(!!userProfileData) {
-        return (
-          <>
-            <ProfileImage src={userProfileData && userProfileData.picture} alt="Placeholder" />
-            <div style={{paddingTop: 50}}>
-              <p>{`Email: ${userProfileData && resanitizeEmail(user?.email)}`}</p>
-              <p>{`Membership starts: ${formatDate(userProfileData?.membershipStart)}`}</p>
-              <p>{`Membership ends: ${formatDate(userProfileData?.membershipExpiry)}`}</p>
-            </div>
-            <Button variant="danger" onClick={onSignoutClick}>Sign out</Button>
-          </>
-          
-        )
-      } else {
-        return (
-          <>
-            <h2 style={{padding: '50px 0px', textAlign: 'center'}}>Not a member yet</h2>
-            <Button variant="danger" onClick={onSignoutClick}>Sign out</Button>
-          </>
-        )
+      if(profileMode === 'member-profile') {
+        if(!!userProfileData) {
+          return (
+            <>
+              <ProfileImage src={userProfileData && userProfileData.picture} alt="Placeholder" />
+                <div style={{paddingTop: 50}}>
+                  <p>{`Email: ${userProfileData && resanitizeEmail(user?.email)}`}</p>
+                  <p>{`Membership starts: ${formatDate(userProfileData?.membershipStart)}`}</p>
+                  <p>{`Membership ends: ${formatDate(userProfileData?.membershipExpiry)}`}</p>
+                </div>
+              <Button variant="danger" onClick={onSignoutClick}>Sign out</Button>
+            </>
+            
+          )
+        } else {
+          return (
+            <>
+              <h2 style={{padding: '50px 0px', textAlign: 'center'}}>Not a member yet</h2>
+              <Button variant="danger" onClick={onSignoutClick}>Sign out</Button>
+            </>
+          )
+        }
+      } else if(profileMode === 'after-cut-profile') {
+        if(!!userProfileData && userProfileData.afterCutDetails) {
+          return (
+            <>
+              {userProfileData.afterCutDetails?.afterCutPics && userProfileData.afterCutDetails?.afterCutPics.map((picture, i) => {
+                return (
+                  <img style={{ margin: 10 }} src={picture} alt={`Picture ${i + 1}`} />
+                )
+              })}
+              {userProfileData.afterCutDetails?.date && <span style={{ fontSize: 18, paddingTop: 10, fontWeight: 'bold' }}>Last cut on <b>{formatDate(userProfileData.afterCutDetails?.date)}</b></span>}
+
+              {userProfileData.afterCutDetails?.capsterName && <span style={{ fontSize: 18, paddingTop: 10, fontWeight: 'bold' }}>Capster Name: <b>{userProfileData.afterCutDetails?.capsterName}</b></span>}
+              
+            </>
+          )
+        }
+        
       }
     }
   }
 
   return (
-    <Container fluid style={{padding: 20, maxWidth: 400}}>
-      <Row>
-        <Col>
-          <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
-            {renderProfile()}
-          </div>
-        </Col>
-      </Row>
-    </Container>
+    <div>
+      <NavBarBack />
+      <Container fluid style={{padding: 20, maxWidth: 400}}>
+        <Row>
+          <Col>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-evenly' }}>
+              <Button onClick={() => setProfileMode('member-profile')} style={{marginBottom: 10, color: '#fff'}} variant="secondary">Member Profile</Button>
+              <Button onClick={() => setProfileMode('after-cut-profile')} style={{ marginBottom: 10, color: '#fff'}} variant="secondary">Latest cut details</Button>
+            </div>
+            <div style={{padding: 20, display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
+              {renderProfile()}
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   )
 }
 

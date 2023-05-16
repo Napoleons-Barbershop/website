@@ -25,9 +25,30 @@ const AdminDashboardProvider = ({ children }) => {
     }))
   }
 
+  const setViewProfilePicture = (viewProfilePicture) => {
+    setAdminDashboardData((state) => ({
+      ...state,
+      viewProfilePicture
+    }))
+  }
+
+  const setViewAfterCutPictures = (viewAfterCutPictures) => {
+    setAdminDashboardData((state) => ({
+      ...state,
+      viewAfterCutPictures
+    }))
+  }
+
   return (
     <AdminDashboardContext.Provider
-      value={{ ...adminDashboardData, setUsersData, setApiLoading, setUpdateData }}
+      value={{ 
+        ...adminDashboardData, 
+        setUsersData, 
+        setApiLoading, 
+        setUpdateData, 
+        setViewProfilePicture, 
+        setViewAfterCutPictures 
+      }}
     >
       {children}
     </AdminDashboardContext.Provider>

@@ -7,7 +7,11 @@ export const initialAdminDashboardContext = {
   apiLoading: false,
   setApiLoading: () => {},
   updateData: false,
-  setUpdateData: () => {}
+  setUpdateData: () => {},
+  viewProfilePicture: false,
+  setViewProfilePicture: () => {},
+  viewAfterCutPictures: false,
+  setViewAfterCutPictures: () => {}
 }
 
 // Create the Context object
