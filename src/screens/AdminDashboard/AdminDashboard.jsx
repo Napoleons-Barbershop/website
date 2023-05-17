@@ -29,14 +29,25 @@ const Add3Months = ({ data }) => {
       const newMembershipExpiry = addMonths(new Date(data?.membershipExpiry), 3);
   
       const updates = {};
-      updates[`/users/${email}`] = 
-      { 
-        membershipStart: data?.membershipStart, 
-        membershipExpiry: newMembershipExpiry.getTime(),
-        picture: data?.picture,
-        name: data?.name,
-        phoneNumber: data?.phoneNumber,
-        afterCutDetails: data?.afterCutDetails
+      if(!data?.afterCutDetails) {
+        updates[`/users/${email}`] = 
+        { 
+          membershipStart: data?.membershipStart, 
+          membershipExpiry: newMembershipExpiry.getTime(),
+          picture: data?.picture,
+          name: data?.name,
+          phoneNumber: data?.phoneNumber,
+        }
+      } else {
+        updates[`/users/${email}`] = 
+        { 
+          membershipStart: data?.membershipStart, 
+          membershipExpiry: newMembershipExpiry.getTime(),
+          picture: data?.picture,
+          name: data?.name,
+          phoneNumber: data?.phoneNumber,
+          afterCutDetails: data?.afterCutDetails
+        }
       }
       await update(ref(database), updates);
       setUpdateData(true);
@@ -58,14 +69,25 @@ const Decrease3Months = ({ data }) => {
       const newMembershipExpiry = subMonths(new Date(data?.membershipExpiry), 3);
   
       const updates = {};
-      updates[`/users/${email}`] = 
-      { 
-        membershipStart: data?.membershipStart, 
-        membershipExpiry: newMembershipExpiry.getTime(),
-        picture: data?.picture,
-        name: data?.name,
-        phoneNumber: data?.phoneNumber,
-        afterCutDetails: data?.afterCutDetails
+      if(!data?.afterCutDetails) {
+        updates[`/users/${email}`] = 
+        { 
+          membershipStart: data?.membershipStart, 
+          membershipExpiry: newMembershipExpiry.getTime(),
+          picture: data?.picture,
+          name: data?.name || '-',
+          phoneNumber: data?.phoneNumber || '-',
+        }
+      } else {
+        updates[`/users/${email}`] = 
+        { 
+          membershipStart: data?.membershipStart, 
+          membershipExpiry: newMembershipExpiry.getTime(),
+          picture: data?.picture,
+          name: data?.name || '-',
+          phoneNumber: data?.phoneNumber || '-',
+          afterCutDetails: data?.afterCutDetails
+        }
       }
       await update(ref(database), updates);
       setUpdateData(true);
