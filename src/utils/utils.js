@@ -1,3 +1,5 @@
+import { format } from 'date-fns';
+
 export const sanitizeEmail = (email) => {
   if(email) {
     let result = '';
@@ -33,6 +35,14 @@ export const resanitizeEmail = (email) => {
 export const formatDate = (dateInMs) => {
   if(dateInMs) {
     return new Date(parseInt(dateInMs)).toLocaleDateString('id');
+  }
+  return 'N/A'
+}
+
+export const formatDateTime = (dateInMs) => {
+  if(dateInMs) {
+    const dateMs = new Date(parseInt(dateInMs));
+    return format(dateMs, "dd/MM/yyyy hh:mm")
   }
   return 'N/A'
 }

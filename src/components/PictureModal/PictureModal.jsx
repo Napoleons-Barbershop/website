@@ -1,7 +1,8 @@
 import React from 'react';
 import { Modal } from 'react-bootstrap';
+import { formatDate } from '../../utils/utils';
 
-const PictureModal = ({ show, handleClose, pictures, capsterName, title }) => {
+const PictureModal = ({ show, handleClose, pictures, capsterName, title, afterCutDate }) => {
 
   const renderPictures = () => {
     if(pictures) {
@@ -24,6 +25,7 @@ const PictureModal = ({ show, handleClose, pictures, capsterName, title }) => {
         <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', paddingBottom: 30}}>
           {renderPictures()}
           {capsterName && <span style={{ fontSize: 18, paddingTop: 10 }}>Capster Name: <b>{capsterName}</b></span>}
+          {afterCutDate && <span style={{ fontSize: 18, paddingTop: 10 }}>Last cut on: <b>{formatDate(afterCutDate)}</b></span>}
         </div>
       </Modal.Body>
     </Modal>

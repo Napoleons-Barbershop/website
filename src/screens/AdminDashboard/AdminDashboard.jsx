@@ -320,6 +320,7 @@ const AdminDashboard = () => {
               title="After-cut Details"
               pictures={selectedRow?.afterCutDetails?.afterCutPics}
               capsterName={selectedRow?.afterCutDetails?.capsterName}
+              afterCutDate={selectedRow?.afterCutDetails?.date}
              />
           }
           

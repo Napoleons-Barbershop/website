@@ -7,7 +7,7 @@ import useLogin from '../../hooks/useLogin';
 import { useNavigate } from 'react-router-dom';
 import { ref, get, child } from "firebase/database";
 import { useEffect } from 'react';
-import { formatDate, resanitizeEmail, sanitizeEmail } from '../../utils/utils';
+import { formatDate, formatDateTime, resanitizeEmail, sanitizeEmail } from '../../utils/utils';
 import { useState } from 'react';
 import NavBarBack from '../NavBarBack/NavBarBack';
 
@@ -85,7 +85,7 @@ const UserProfile = () => {
                   <img style={{ margin: 10 }} src={picture} alt={`Picture ${i + 1}`} />
                 )
               })}
-              {userProfileData.afterCutDetails?.date && <span style={{ fontSize: 18, paddingTop: 10, fontWeight: 'bold' }}>Last cut on <b>{formatDate(userProfileData.afterCutDetails?.date)}</b></span>}
+              {userProfileData.afterCutDetails?.date && <span style={{ fontSize: 18, paddingTop: 10, fontWeight: 'bold' }}>Last cut on: <b>{formatDate(userProfileData.afterCutDetails?.date)}</b></span>}
 
               {userProfileData.afterCutDetails?.capsterName && <span style={{ fontSize: 18, paddingTop: 10, fontWeight: 'bold' }}>Capster Name: <b>{userProfileData.afterCutDetails?.capsterName}</b></span>}
               
