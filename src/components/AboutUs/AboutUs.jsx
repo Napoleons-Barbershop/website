@@ -45,7 +45,7 @@ const AboutUs = () => {
               <GrPlan size={25} />
             </div>
             <AboutUsTitle><b>4. Social Awareness</b></AboutUsTitle>
-            <span style={{textAlign: 'justify'}}>We have decided to also be accountable for the society in need. Hence, part of our earnings will be donated to respective parties. See our social journey on our website!</span>
+            <span style={{textAlign: 'justify'}}>we have decided to also be accountable for the society in need. Hence, our services will reach to the less fortunate parties through various visits. See our social journey on our instagram!</span>
           </AboutUsCardWrapper>
         </AboutUsCol>
       </Row>

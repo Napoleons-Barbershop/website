@@ -19,7 +19,7 @@ const Home = () => {
       <AboutUs />
       {/* <Location /> */}
       <ProductsAndServices />
-      <Charity />
+      {/* <Charity /> */}
       <ContactUs />
       <WhatsappFloatingButton />
     </>
