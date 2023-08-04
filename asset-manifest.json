@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/static/css/main.ee91410e.css",
-    "main.js": "/static/js/main.0957a2f3.js",
+    "main.js": "/static/js/main.3949bf8e.js",
     "static/js/787.aac1aaeb.chunk.js": "/static/js/787.aac1aaeb.chunk.js",
+    "static/media/about-us-image-1.jpg": "/static/media/about-us-image-1.33b2fdc3d352839d19d3.jpg",
+    "static/media/about-us-image-3.jpg": "/static/media/about-us-image-3.4344518888a4eb3dba07.jpg",
+    "static/media/about-us-image-2.jpg": "/static/media/about-us-image-2.3c22e60d16309ff11dae.jpg",
     "static/media/charity-image-2.jpg": "/static/media/charity-image-2.ff4400380046314239d8.jpg",
-    "static/media/about-us-image-3.jpg": "/static/media/about-us-image-3.5cdb1dbcea1aab4c8ba4.jpg",
     "static/media/charity-image-4.jpg": "/static/media/charity-image-4.0397849e6cd5ad90c1bd.jpg",
     "static/media/charity-image-1.jpg": "/static/media/charity-image-1.4d318f64001b8994efb8.jpg",
-    "static/media/about-us-image-1.jpg": "/static/media/about-us-image-1.ac24fe0d0585f6b6b5a2.jpg",
     "static/media/charity-image-3.jpg": "/static/media/charity-image-3.59079a4f6398dc1beeba.jpg",
-    "static/media/about-us-image-2.jpg": "/static/media/about-us-image-2.02341c6c43d1a654a163.jpg",
     "static/media/location-map.png": "/static/media/location-map.554ef0f46caf2e0fed4d.png",
     "static/media/logo.jpg": "/static/media/logo.f6c88470c172ef1a9ecd.jpg",
     "static/media/whatsapp-icon.png": "/static/media/whatsapp-icon.1dd8ca2765f1f177ab22.png",
@@ -18,11 +18,11 @@
     "static/media/revicons.woff": "/static/media/revicons.e8746a624ed098489406.woff",
     "index.html": "/index.html",
     "main.ee91410e.css.map": "/static/css/main.ee91410e.css.map",
-    "main.0957a2f3.js.map": "/static/js/main.0957a2f3.js.map",
+    "main.3949bf8e.js.map": "/static/js/main.3949bf8e.js.map",
     "787.aac1aaeb.chunk.js.map": "/static/js/787.aac1aaeb.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ee91410e.css",
-    "static/js/main.0957a2f3.js"
+    "static/js/main.3949bf8e.js"
   ]
 }
