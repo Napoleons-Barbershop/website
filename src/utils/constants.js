@@ -37,6 +37,7 @@ export const CAROUSEL_RESPONSIVE_SIZES_CHARITY = {
 };
 
 export const ADMIN_EMAIL = 'napoleonsbarbershop@gmail.com';
+export const ADMIN_EMAIL_2 = 'naposbarbershop@gmail.com';
 
 export const MEMBERSHIP_PLANS = [
   {

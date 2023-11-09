@@ -18,10 +18,14 @@ import "react-datepicker/dist/react-datepicker.css";
 import EditModal from '../../components/EditModal/EditModal';
 import { NAPOLEON_BROWN_COLOR, NAPOLEON_COMPLEMENT_COLOR } from '../../utils/colors';
 import PictureModal from '../../components/PictureModal/PictureModal';
+import useLogin from '../../hooks/useLogin';
+import { ADMIN_EMAIL } from '../../utils/constants';
 
 const Add3Months = ({ data }) => {
   const { database } = firebase();
   const { setUpdateData } = useAdminDashboard();
+  const { user } = useLogin();
+  const isAdmin = user?.email === ADMIN_EMAIL;
 
   const onButtonClicked = async () => {
     if(window.confirm('Are you sure to add 3 months?')) {
@@ -37,6 +41,7 @@ const Add3Months = ({ data }) => {
           picture: data?.picture,
           name: data?.name,
           phoneNumber: data?.phoneNumber,
+          branch: data?.branch || '-'
         }
       } else {
         updates[`/users/${email}`] = 
@@ -46,12 +51,17 @@ const Add3Months = ({ data }) => {
           picture: data?.picture,
           name: data?.name,
           phoneNumber: data?.phoneNumber,
-          afterCutDetails: data?.afterCutDetails
+          afterCutDetails: data?.afterCutDetails,
+          branch: data?.branch || '-'
         }
       }
       await update(ref(database), updates);
       setUpdateData(true);
     }
+  }
+
+  if(!isAdmin) {
+    return null
   }
 
   return (
@@ -62,6 +72,8 @@ const Add3Months = ({ data }) => {
 const Decrease3Months = ({ data }) => {
   const { database } = firebase();
   const { setUpdateData } = useAdminDashboard();
+  const { user } = useLogin();
+  const isAdmin = user?.email === ADMIN_EMAIL;
 
   const onButtonClicked = async () => {
     if(window.confirm('Are you sure to subtract 3 months?')) {
@@ -77,6 +89,7 @@ const Decrease3Months = ({ data }) => {
           picture: data?.picture,
           name: data?.name || '-',
           phoneNumber: data?.phoneNumber || '-',
+          branch: data?.branch || '-'
         }
       } else {
         updates[`/users/${email}`] = 
@@ -86,7 +99,8 @@ const Decrease3Months = ({ data }) => {
           picture: data?.picture,
           name: data?.name || '-',
           phoneNumber: data?.phoneNumber || '-',
-          afterCutDetails: data?.afterCutDetails
+          afterCutDetails: data?.afterCutDetails,
+          branch: data?.branch || '-'
         }
       }
       await update(ref(database), updates);
@@ -94,8 +108,53 @@ const Decrease3Months = ({ data }) => {
     }
   }
 
+  if(!isAdmin) {
+    return null
+  }
+
   return (
     <Button onClick={onButtonClicked} variant='warning'>Subtract 3 mth</Button>
+  )
+}
+
+const ChangeToCabang1 = ({ data }) => {
+  const { database } = firebase();
+  const { setUpdateData } = useAdminDashboard();
+
+  const onButtonClicked = async () => {
+    if(window.confirm('Are you sure to change to Cabang 1')) {
+      const email = data?.email;
+      const updates = {};
+      if(data?.afterCutDetails) {
+        updates[`/users/${email}`] = 
+        { 
+          membershipStart: data?.membershipStart, 
+          membershipExpiry: data?.membershipExpiry,
+          picture: data?.picture,
+          name: data?.name || '-',
+          phoneNumber: data?.phoneNumber || '-',
+          branch: data?.branch === '-' ? 'Cabang 1' : data?.branch,
+          afterCutDetails: data?.afterCutDetails
+        }
+      } else {
+        updates[`/users/${email}`] = 
+        { 
+          membershipStart: data?.membershipStart, 
+          membershipExpiry: data?.membershipExpiry,
+          picture: data?.picture,
+          name: data?.name || '-',
+          phoneNumber: data?.phoneNumber || '-',
+          branch: data?.branch === '-' ? 'Cabang 1' : data?.branch,
+        }
+      }
+      
+      await update(ref(database), updates);
+      setUpdateData(true);
+    }
+  }
+
+  return (
+    <Button onClick={onButtonClicked} variant='warning'>Change to Cabang 1</Button>
   )
 }
 
@@ -130,6 +189,8 @@ const ViewAfterCutPictures = () => {
 const DeleteButton = ({ data }) => {
   const { database } = firebase();
   const { setUpdateData } = useAdminDashboard();
+  const { user } = useLogin();
+  const isAdmin = user?.email === ADMIN_EMAIL;
 
   const onDeleteButtonClicked = async () => {
     const email = data?.email;
@@ -137,6 +198,10 @@ const DeleteButton = ({ data }) => {
       await remove(ref(database, `users/${email}`));
       setUpdateData(true);
     }
+  }
+
+  if(!isAdmin) {
+    return null
   }
 
   return (
@@ -220,9 +285,11 @@ const AdminDashboard = () => {
     {field: 'sanitizedEmail', sortable: true, headerName: 'Email', filter: true},
     {field: 'isMembershipActive', sortable: true, headerName: 'Plan Status', cellRenderer: ActiveInactiveBadge, filter: true},
     {field: 'name', sortable: true, headerName: 'Name', filter: true, onCellClicked: onNameCellClicked},
+    // {field: 'Change to Cabang 1', cellRenderer: ChangeToCabang1},
     {field: 'phoneNumber', sortable: true, headerName: 'Phone Number', filter: true, onCellClicked: onPhoneNumberCellClicked},
     {field: 'membershipStart', sortable: true, cellRenderer: MembershipStart},
     {field: 'membershipExpiry', sortable: true, cellRenderer: MembershipExpiry, editable: true, /*cellEditor: DatepickerCellEditor*/},
+    {field: 'branch', sortable: true, headerName: 'Branch', filter: true},
     {field: 'Member Profile Picture', cellRenderer: ViewProfilePicture, onCellClicked: onPictureCellClicked},
     {field: 'After-cut Details', cellRenderer: ViewAfterCutPictures, onCellClicked: onPictureCellClicked},
     {field: 'Add 3 months', cellRenderer: Add3Months},
@@ -270,7 +337,8 @@ const AdminDashboard = () => {
               isMembershipActive,
               name: userAcc?.name || '-',
               phoneNumber: userAcc?.phoneNumber || '-',
-              afterCutDetails: userAcc?.afterCutDetails
+              afterCutDetails: userAcc?.afterCutDetails,
+              branch: userAcc?.branch || '-'
             }
           });
           setUsersData(data);

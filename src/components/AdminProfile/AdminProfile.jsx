@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Col, Container, Row, Form, Dropdown, Button, Alert } from 'react-bootstrap';
 import { NAPOLEON_BROWN_COLOR } from '../../utils/colors';
-import { ADMIN_EMAIL, MEMBERSHIP_PLANS  } from '../../utils/constants';
+import { ADMIN_EMAIL, ADMIN_EMAIL_2, MEMBERSHIP_PLANS  } from '../../utils/constants';
 import { AiFillCamera } from 'react-icons/ai'
 import CameraModal from '../CameraModal/CameraModal';
 import firebase from '../../utils/firebase';
@@ -19,7 +19,7 @@ const AdminProfile = () => {
   const { auth, database } = firebase();
   const navigate = useNavigate();
   const { setUser, user } = useLogin();
-  const isAdmin = user?.email === ADMIN_EMAIL
+  const isAdmin = user?.email === ADMIN_EMAIL || user?.email === ADMIN_EMAIL_2
 
   const [selectedMembershipOption, setSelectedMembershipOption] = useState('3');
   const [pictureMode, setPictureMode] = useState(false);
@@ -28,6 +28,7 @@ const AdminProfile = () => {
   const [name, setName] = useState(null);
   const [memberPicture, setMemberPicture] = useState(null);
   const [alertVariant, setAlertVariant] = useState(null);
+  const [branch, setBranch] = useState(null);
 
   const renderDropdownToggleText = () => {
     if(selectedMembershipOption === '3') {
@@ -45,7 +46,7 @@ const AdminProfile = () => {
 
   const onSubmitMembershipPlan = async (evt) => {
     evt.preventDefault();
-    if(email && memberPicture && selectedMembershipOption && phoneNumber && name) {
+    if(email && memberPicture && selectedMembershipOption && phoneNumber && name && branch) {
       const sanitizedEmail = sanitizeEmail(email);
       let membershipStart = new Date().getTime();
       let membershipExpiry;
@@ -61,7 +62,8 @@ const AdminProfile = () => {
         membershipStart,
         membershipExpiry: membershipExpiry.getTime(),
         phoneNumber,
-        name
+        name,
+        branch
       }
       try {
         const snapshot = await get(child(ref(database), `users/${sanitizedEmail}`));
@@ -81,7 +83,7 @@ const AdminProfile = () => {
         showAlert('danger')
       }
     } else {
-      alert("Please fill email, name, phone number and picture");
+      alert("Please fill email, name, phone number, picture and branch");
     }
   }
 
@@ -165,6 +167,18 @@ const AdminProfile = () => {
               <Form.Group style={{paddingBottom: 20}}>
                 <Form.Label>Phone number (021... or 08...)</Form.Label>
                 <Form.Control required value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} pattern="(\()?(\+62|62|0)(\d{2,3})?\)?[ .-]?\d{2,4}[ .-]?\d{2,4}[ .-]?\d{2,4}" placeholder="Enter phone number" />
+              </Form.Group>
+
+              <Form.Group style={{paddingBottom: 20}}>
+                <Form.Label>Cabang</Form.Label>
+                <Form.Select required value={branch} onChange={(e) => setBranch(e.target.value)}>
+                  <option>Pilih cabang</option>
+                  <option value="Cabang 1">Cabang 1</option>
+                  <option value="Cabang 2">Cabang 2</option>
+                  <option value="Cabang 3">Cabang 3</option>
+                  <option value="Cabang 4">Cabang 4</option>
+                  <option value="Cabang 5">Cabang 5</option>
+                </Form.Select>
               </Form.Group>
 
               <Button style={{marginBottom: 10, width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}} variant="primary" onClick={onTakePictureClick}>

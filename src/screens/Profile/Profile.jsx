@@ -3,14 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import UserProfile from '../../components/UserProfile/UserProfile';
 import AdminProfile from '../../components/AdminProfile/AdminProfile';
 import useLogin from '../../hooks/useLogin';
-import { ADMIN_EMAIL } from '../../utils/constants';
+import { ADMIN_EMAIL, ADMIN_EMAIL_2 } from '../../utils/constants';
 
 
 const Profile = () => {
 
   const { user, setUser } = useLogin();
   const navigate = useNavigate();
-  const isAdmin = user?.email === ADMIN_EMAIL
+  const isAdmin = user?.email === ADMIN_EMAIL || user?.email === ADMIN_EMAIL_2
 
   // useEffect(() => {
   //   if(!user) {
