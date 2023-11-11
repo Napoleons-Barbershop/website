@@ -170,9 +170,8 @@ const AdminProfile = () => {
               </Form.Group>
 
               <Form.Group style={{paddingBottom: 20}}>
-                <Form.Label>Cabang</Form.Label>
+                <Form.Label>Pilih Cabang</Form.Label>
                 <Form.Select required value={branch} onChange={(e) => setBranch(e.target.value)}>
-                  <option>Pilih cabang</option>
                   <option value="Cabang 1">Cabang 1</option>
                   <option value="Cabang 2">Cabang 2</option>
                   <option value="Cabang 3">Cabang 3</option>
